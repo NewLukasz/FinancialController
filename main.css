@@ -24,5 +24,16 @@ footer
 	padding: 20px;
 }
 
+.loginForm
+{
+	margin-top: 20px;
+	margin-bottom: 30px;
+	margin-right:auto;
+	margin-left:auto;
+	max-width: 500px;
+}
 
-
+.btn-primary
+{
+	background-color: #0C44CD;
+}
