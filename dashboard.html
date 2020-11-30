@@ -15,6 +15,7 @@
 		<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
 		
 		<link rel="stylesheet" href="css/bootstrap.min.css">
+		<link rel="stylesheet" href="css/fontello.css">
 		<link rel="stylesheet" href="main.css">
 		<script src="skrypt.js"></script>
     
@@ -25,43 +26,49 @@
 			<div id="logo">
 				<a href="index.html"><img class="img-fluid my-3 d-block mx-auto" src="images/logo.png"></a>
 			</div>
-			<nav class="navbar navbar-dark bg-navbar">
+			<nav class="navbar navbar-dark bg-navbar navbar-expand-lg">
+		
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainmenu" aria-controls="mainmenu" aria-expanded="false" aria-label="Przełącznik nawigacji">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+		
+			<div class="collapse navbar-collapse" id="mainmenu">
+			
 				<ul class="navbar-nav mx-auto">
-					<ul class="list-inline">
-						<li class="nav-item list-inline-item ">
-							<a class="nav-link" href="login.html"> Login </a>
-						</li>
-						<li class="nav-item list-inline-item">
-							<a class="nav-link" href="register.html"> Register </a>
-						</li>
-					</ul>
+					<li class="nav-item active">
+						<a class="nav-link" href="#"><i class="icon-home"></i>Main page</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#"><i class="icon-dollar"></i>Add income</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#"><i class="icon-basket"></i>Add expense</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#"><i class="icon-chart-pie"></i>Balance</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#"><i class="icon-wrench"></i>Settings</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="index.html"><i class="icon-logout"></i>Logout</a>
+					</li>
 				</ul>
-			</nav>
+			</div>
+		
+		</nav>
 		</header>
 	
 		<main>
 			<article>
 				<div class="container">
 					<div class="row p-4">
-						<div class="col-lg-6 text-justify">
-							<p>Financial Controller is a web application which help you to control your money flow and show on which target you spend most of you money.
-							</p>
-
-							<h1 class="lead">5 reason why - you should do it</h1>
-							
-							<ol class="text-justify mx-4">
-								<li>To be albe to follow your dreams!</li>
-								<li>To provide financial calm to your family.</li>
-								<li>To be safe in case of emergency situaction.</li>
-								<li>To be financial independent and be able to quit your job if you want.</li>
-								<li>Because of life is to short to spend entite lifetime in work.</li>
-							</ol>
-							<p>All of point above is possible - but your life is only on your own! You have to make a aware decisions and this application will <span class="font-weight-bold">help you<span>. 
-							</p>
-							<p>
-							Let me help you with your finances and <span class="font-weight-bold"> register now! </span>
-							</p>
-							<a class="btn btn-success btn-block" href="register.html" role="button">Register!</a>
+						<div class="col-lg-6 mt-2">
+							<a class="btn btn-primary btn-block" href="dashboard.html" role="button"><i class="icon-dollar"></i>Add income</a>
+							<a class="btn btn-primary btn-block" href="dashboard.html" role="button"><i class="icon-basket"></i>Add expense</a>
+							<a class="btn btn-primary btn-block" href="dashboard.html" role="button"><i class="icon-chart-pie"></i>Balance</a>
+							<a class="btn btn-primary btn-block" href="dashboard.html" role="button"><i class="icon-wrench"></i>Settings</a>
+							<a class="btn btn-primary btn-block" href="dashboard.html" role="button"><i class="icon-logout"></i>Logout</a>
 						</div>
 						<div class="col-lg-6 mt-2">
 							<img class="img-fluid d-block mx-auto" src="images/letyoursavingsgrow.png">
