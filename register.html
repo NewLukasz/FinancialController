@@ -4,7 +4,7 @@
 	<head>
 	
 		<meta charset="utf-8">
-		<title>Login - Financial Controller</title>
+		<title>Register - Financial Controller</title>
 		<meta name="description" content="Financial Controller is a web application which help you to control your money flow and show on which target you spend most of you money. By this way you can make an aware decision that you follow the right way.">
 		<meta name="keywords" content="money, cash, saving, control, finance, financial, spend, balance, month balance, year balance">
 		<meta name="author" content="Lukasz Kilijanski">
@@ -24,16 +24,15 @@
 	<body>
 		<header>
 			<div id="logo">
-			
 				<a href="index.html"><img class="img-fluid my-3 d-block mx-auto" src="images/logo.png"></a>
 			</div>
 			<nav class="navbar navbar-dark bg-navbar">
 				<ul class="navbar-nav mx-auto">
 					<ul class="list-inline">
-						<li class="nav-item list-inline-item active">
+						<li class="nav-item list-inline-item ">
 							<a class="nav-link" href="login.html"> Login </a>
 						</li>
-						<li class="nav-item list-inline-item">
+						<li class="nav-item list-inline-item active">
 							<a class="nav-link" href="register.html"> Register </a>
 						</li>
 					</ul>
@@ -54,6 +53,17 @@
 				</div>
 			  </div>
 			  
+			  <div class="form-group">
+				<label>Type your e-mail adress:</label>
+				
+				<div class="input-group mb-3">
+				  <div class="input-group-prepend">
+					<span class="input-group-text"><i class="icon-mail-alt"></i></span>
+				  </div>
+				  <input name="email" type="text" class="form-control" placeholder="Email" aria-label="Email">
+				</div>
+			  </div>
+			  
 			  
 			  <div class="form-group">
 				<label>Type your password:</label>
@@ -64,11 +74,18 @@
 				  <input name="password" type="password" class="form-control" placeholder="Password" aria-label="Password">
 				</div>
 			  </div>
-			  <div class="form-check">
-				<input type="checkbox" class="form-check-input">
-				<label class="form-check-label">Remember me</label>
+			  
+			  <div class="form-group">
+				<label>Repeat your password:</label>
+				<div class="input-group mb-3">
+				  <div class="input-group-prepend">
+					<span class="input-group-text"><i class="icon-lock"></i></span>
+				  </div>
+				  <input name="repeatedPassword" type="password" class="form-control" placeholder="Repeat password" aria-label="repeatedPassword">
+				</div>
 			  </div>
-			  <button type="submit" class="btn btn-primary btn-block mt-2">Login</button>
+			  
+			  <button type="submit" class="btn btn-primary btn-block mt-2">Register</button>
 			</form>
 		</main>
 		<footer>
