@@ -5,7 +5,25 @@ body
 	font-size: 17px;
 }
 
-.bg-navbar
+.setting-unloged-navbar
 {
 	background-color: #0836a7;
+}
+
+
+.setting-unloged-navbar a 
+{
+	color: white;
+}
+
+.setting-unloged-navbar a:hover
+{
+	background-color: white;
+	border-radius: 5px;
+	color: #0836a7;
+}
+
+.container
+{
+	max-width: 1200px;
 }
