@@ -5,9 +5,9 @@ function calendar(){
 	var day=date.getDate();
 	var month=date.getMonth()+1;
 	var year=date.getYear()+1900;
-	$("#expenseDatePicker").attr('value',year+"-"+month+"-"+day);
+	$("#incomeDatePicker").attr('value',year+"-"+month+"-"+day);
 						 
-	$("#expenseDatePicker").datepicker({
+	$("#incomeDatePicker").datepicker({
 		dateFormat: "yy-mm-dd"
 	});
 }
