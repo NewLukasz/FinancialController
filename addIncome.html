@@ -35,14 +35,14 @@
 			<div class="collapse navbar-collapse" id="mainmenu">
 			
 				<ul class="navbar-nav mx-auto">
-					<li class="nav-item active">
-						<a class="nav-link" href="#"><i class="icon-home"></i>Main page</a>
-					</li>
 					<li class="nav-item">
+						<a class="nav-link" href="dashboard.html"><i class="icon-home"></i>Main page</a>
+					</li>
+					<li class="nav-item active">
 						<a class="nav-link" href="addIncome.html"><i class="icon-dollar"></i>Add income</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="#"><i class="icon-basket"></i>Add expense</a>
+						<a class="nav-link" href="addExpense.html"><i class="icon-basket"></i>Add expense</a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" href="#"><i class="icon-chart-pie"></i>Balance</a>
@@ -60,22 +60,49 @@
 		</header>
 	
 		<main>
-			<article>
-				<div class="container">
-					<div class="row p-4">
-						<div class="col-lg-6 mt-2">
-							<a class="btn btn-primary btn-block" href="dashboard.html" role="button"><i class="icon-dollar"></i>Add income</a>
-							<a class="btn btn-primary btn-block" href="dashboard.html" role="button"><i class="icon-basket"></i>Add expense</a>
-							<a class="btn btn-primary btn-block" href="dashboard.html" role="button"><i class="icon-chart-pie"></i>Balance</a>
-							<a class="btn btn-primary btn-block" href="dashboard.html" role="button"><i class="icon-wrench"></i>Settings</a>
-							<a class="btn btn-primary btn-block" href="dashboard.html" role="button"><i class="icon-logout"></i>Logout</a>
-						</div>
-						<div class="col-lg-6 mt-2">
-							<img class="img-fluid d-block mx-auto" src="images/letyoursavingsgrow.png">
-						</div>
-					</div>
+			<div class="financialMovementsForm">
+			<div class="form-group">
+				<label>Type amount of income:</label>
+				
+				<div class="input-group mb-3">
+				  <div class="input-group-prepend">
+					<span class="input-group-text"><i class="icon-money"></i></span>
+				 </div>
+				 <input name="amount" type="text" class="form-control" placeholder="Amount" aria-label="Amount">
 				</div>
-			</article>
+			</div>
+			  
+			  
+			<div class="form-group">
+				<label>Type date:</label>
+				<div class="input-group mb-3">
+				  <div class="input-group-prepend">
+					<span class="input-group-text"><i class="icon-calendar"></i></span>
+				  </div>
+				  <input name="dateOfIncome" type="password" class="form-control" placeholder="Date" aria-label="Date">
+				</div>
+			</div>
+			<label>Choose source of income: </label>
+			<select class="form-control mb-3" id="sourceOfIncome">
+				<option>Salary</option>
+				<option>Bank interest</option>
+				<option>Allegro sales</option>
+				<option>Others</option>
+			</select>
+			
+			<div class="form-group">
+				<label>Comment:</label>
+				<div class="input-group mb-3">
+				  <div class="input-group-prepend">
+					<span class="input-group-text"><i class="icon-pencil"></i></span>
+				  </div>
+				  <input name="comment" type="text" class="form-control" placeholder="Comment (optional)" aria-label="Comment">
+				</div>
+			</div>
+			  
+			  <button type="button" class="btn btn-primary btn-block mt-2">Add income</button>
+			</form>
+			</div>
 		</main>
 		<footer>
 			financialController.com &copy 2020
