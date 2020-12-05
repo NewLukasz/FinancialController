@@ -27,7 +27,7 @@ if(isset($_POST['email'])){
 	//password validation
 	$password1=$_POST['password1'];
 	$password2=$_POST['password2'];
-	if((strlen($password1)<8)||(strlen($haslo1)>20)){
+	if((strlen($password1)<8)||(strlen($password2)>20)){
 		$validationStatus=false;
 		$_SESSION['errorPassword']="Password length must be between 8 and 20 signs";
 	}
@@ -55,11 +55,19 @@ if(isset($_POST['email'])){
 		$_SESSION['errorCaptcha']="Confirm that you are not a bot";
 	}
 	
-	
 	if($validationStatus==false){
-		
 		header('Location: register.php');
+		exit();
 	}
+	
+	require_once 'database.php';
+	
+	$query=$db->prepare('INSERT INTO users VALUES(NULL,:username,:password,:email)');
+	$query->bindValue(':username',$username,PDO::PARAM_STR);
+	$query->bindValue(':password',$hashedPassword, PDO::PARAM_STR);
+	$query->bindValue(':email',$safetyEmail,PDO::PARAM_STR);
+	$query->execute();
+	header('Location: registeredSuccesful.php');
 }else{
 	header('Location: index.php');
 	exit();
