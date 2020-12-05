@@ -58,7 +58,7 @@
 				  <div class="input-group-prepend">
 					<span class="input-group-text"><i class="icon-user"></i></span>
 				  </div>
-				  <input name="username" type="text" class="form-control" placeholder="Username" aria-label="Username">
+				  <input name="username" type="text" class="form-control" placeholder="Username" aria-label="Username"  <?php if(isset($_SESSION['badAttemptLogin'])) echo 'value="'.$_SESSION['badAttemptLogin'].'"' ; ?>>
 				</div>
 			  </div>
 			  
@@ -76,6 +76,12 @@
 				<input type="checkbox" class="form-check-input">
 				<label class="form-check-label">Remember me</label>
 			  </div>
+<?php
+if(isset($_SESSION['badAttemptLogin'])){
+	echo '<span class="errorNotyfication">Wrong user data inserted.</span>';
+	unset($_SESSION['badAttemptLogin']);
+}
+?>
 			  <button type="submit" class="btn btn-primary btn-block mt-2">Login</button>
 			</form>
 		</main>

@@ -3,8 +3,8 @@
 	if(!isset($_SESSION['loggedInUserId'])){
 		header('Location: index.php');
 		exit();
+	}
 ?>
-
 <!DOCTYPE html>
 <html lang="pl">
 

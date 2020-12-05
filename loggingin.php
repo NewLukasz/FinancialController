@@ -19,10 +19,10 @@ if( isset($_POST['username'])){
 	$user=$userQuery->fetch();		//result is asociative array
 	if($user && password_verify($password,$user['password'])){
 		$_SESSION['loggedInUserId'] = $user['idUser'];
-		unset($_SESSION['bad_attempt']);
+		unset($_SESSION['badAttemptLogin']);
 		header('Location: dashboard.php');	
 	}else{
-		$_SESSION['bad_attempt'] = true;
+		$_SESSION['badAttemptLogin'] = $username;
 		header('Location: login.php');
 		exit();
 	}
