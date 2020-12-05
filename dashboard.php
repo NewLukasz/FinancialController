@@ -34,7 +34,7 @@
 	<body>
 		<header>
 			<div id="logo">
-				<a href="index.html"><img class="img-fluid my-3 d-block mx-auto" src="images/logo.png"></a>
+				<a href="index.php"><img class="img-fluid my-3 d-block mx-auto" src="images/logo.png"></a>
 			</div>
 			<nav class="navbar navbar-dark bg-navbar navbar-expand-lg">
 		
@@ -49,10 +49,10 @@
 						<a class="nav-link" href="#"><i class="icon-home"></i>Main page</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="addIncome.html"><i class="icon-dollar"></i>Add income</a>
+						<a class="nav-link" href="addIncome.php"><i class="icon-dollar"></i>Add income</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="#"><i class="icon-basket"></i>Add expense</a>
+						<a class="nav-link" href="addExpense.php"><i class="icon-basket"></i>Add expense</a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" href="#"><i class="icon-chart-pie"></i>Balance</a>
@@ -74,11 +74,11 @@
 				<div class="container">
 					<div class="row p-4">
 						<div class="col-lg-6 mt-2">
-							<a class="btn btn-primary btn-block" href="addIncome.html" role="button"><i class="icon-dollar"></i>Add income</a>
-							<a class="btn btn-primary btn-block" href="addExpense.html" role="button"><i class="icon-basket"></i>Add expense</a>
-							<a class="btn btn-primary btn-block" href="dashboard.html" role="button"><i class="icon-chart-pie"></i>Balance</a>
-							<a class="btn btn-primary btn-block" href="dashboard.html" role="button"><i class="icon-wrench"></i>Settings</a>
-							<a class="btn btn-primary btn-block" href="dashboard.html" role="button"><i class="icon-logout"></i>Logout</a>
+							<a class="btn btn-primary btn-block" href="addIncome.php" role="button"><i class="icon-dollar"></i>Add income</a>
+							<a class="btn btn-primary btn-block" href="addExpense.php" role="button"><i class="icon-basket"></i>Add expense</a>
+							<a class="btn btn-primary btn-block" href="dashboard.php" role="button"><i class="icon-chart-pie"></i>Balance</a>
+							<a class="btn btn-primary btn-block" href="dashboard.php" role="button"><i class="icon-wrench"></i>Settings</a>
+							<a class="btn btn-primary btn-block" href="logout.php" role="button"><i class="icon-logout"></i>Logout</a>
 						</div>
 						<div class="col-lg-6 mt-2">
 							<img class="img-fluid d-block mx-auto" src="images/letyoursavingsgrow.png">
