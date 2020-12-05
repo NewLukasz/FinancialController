@@ -56,9 +56,14 @@ if(isset($_POST['email'])){
 	}
 	
 	if($validationStatus==false){
+		$_SESSION['usernameAttempt']=$username;
+		$_SESSION['emailAttempt']=$email;
 		header('Location: register.php');
 		exit();
 	}
+	
+	unset($_SESSION['usernameAttempt']);
+	unset($_SESSION['emailAttempt']);
 	
 	require_once 'database.php';
 	

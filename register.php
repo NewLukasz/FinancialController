@@ -53,7 +53,7 @@
 				  <div class="input-group-prepend">
 					<span class="input-group-text"><i class="icon-user"></i></span>
 				  </div>
-				  <input name="username" type="text" class="form-control" placeholder="Username" aria-label="Username">
+				  <input name="username" type="text" class="form-control" placeholder="Username" aria-label="Username"<?php if (isset($_SESSION['usernameAttempt'])) echo 'value="'.$_SESSION['usernameAttempt'].'"' ; ?>>
 				</div>
 				<?php
 					if(isset($_SESSION['errorUsername'])){
@@ -70,7 +70,7 @@
 				  <div class="input-group-prepend">
 					<span class="input-group-text"><i class="icon-mail-alt"></i></span>
 				  </div>
-				  <input name="email" type="text" class="form-control" placeholder="Email" aria-label="Email">
+				  <input name="email" type="text" class="form-control" placeholder="Email" aria-label="Email" <?php if (isset($_SESSION['emailAttempt'])) echo 'value="'.$_SESSION['emailAttempt'].'"' ; ?>>
 				</div>
 				<?php
 					if(isset($_SESSION['errorEmail'])){
