@@ -13,7 +13,20 @@ $incomeValidation=true;
 $amount=$_POST['amount'];
 $amount=checkCommaAndChangeForDot($amount);
 if(checkHowManyDecimalPlacesHasAmount($amount)>2){
-	echo "Powyzej dwa miejsca po przecinku";
+	$incomeValidation=false;
+	echo "Powyzej dwa miejsca po przecinku<br/>";
+}
+
+if(!is_numeric($amount)){
+	$incomeValidation=false;
+	echo "Podana wartosc to nie liczba<br/>";
+}
+
+$dateOfIncome=$_POST['dateOfIncome'];
+
+if(!checkIsAValidDate($dateOfIncome)){
+	$incomeValidation=false;
+	echo "Podana data jest nieprawidlowa";
 }
 
 echo $amount."<br/>";
