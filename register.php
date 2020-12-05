@@ -107,10 +107,16 @@
 			  </div>
 			  <div class="form-check">
 			  <label>
-				<input type="checkbox" class="form-check-input">
+				<input type="checkbox" class="form-check-input" name="termsAndConditions">
 				I accept the terms and conditions
 				</label>
 			  </div>
+			  <?php
+					if(isset($_SESSION['errorTermsAndConditions'])){
+						echo '<span class="errorNotyfication">'.$_SESSION['errorTermsAndConditions'].'</span>';
+						unset($_SESSION['errorTermsAndConditions']);
+					}
+				?>
 			  <button type="submit" class="btn btn-primary btn-block mt-2">Register</button>
 			</form>
 		</main>

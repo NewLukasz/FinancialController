@@ -34,6 +34,13 @@ if(isset($_POST['email'])){
 	}
 	$hashedPassword=password_hash($password1,PASSWORD_DEFAULT);
 	
+	//termsCheckbox validation
+	if(!isset($_POST['termsAndConditions']))
+	{
+		$validationStatus=false;
+		$_SESSION['errorTermsAndConditions']="Please accept terms and conditions";
+	}
+	
 	
 	if($validationStatus==false){
 		header('Location: register.php');
