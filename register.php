@@ -1,3 +1,6 @@
+<?php
+	session_start();
+?>
 <!DOCTYPE html>
 <html lang="pl">
 
@@ -18,6 +21,7 @@
 		<link rel="stylesheet" href="css/fontello.css">
 		<link rel="stylesheet" href="main.css">
 		<script src="skrypt.js"></script>
+		<script src="https://www.google.com/recaptcha/api.js" async defer></script>
     
 	</head>
 
@@ -41,7 +45,7 @@
 		</header>
 	
 		<main>
-			<form class="loginAndRegisterForm">
+			<form class="loginAndRegisterForm" action="registerProcess.php" method="post">
 			  <div class="form-group">
 				<label>Type your user name:</label>
 				
@@ -49,8 +53,14 @@
 				  <div class="input-group-prepend">
 					<span class="input-group-text"><i class="icon-user"></i></span>
 				  </div>
-				  <input name="username" type="text" class="form-control" placeholder="Username" aria-label="Username">
+				  <input name="username" type="text" class="form-control" placeholder="Username" aria-label="Username"<?php if (isset($_SESSION['usernameAttempt'])) echo 'value="'.$_SESSION['usernameAttempt'].'"' ; ?>>
 				</div>
+				<?php
+					if(isset($_SESSION['errorUsername'])){
+						echo '<span class="errorNotyfication">'.$_SESSION['errorUsername'].'</span>';
+						unset($_SESSION['errorUsername']);
+					}
+				?>
 			  </div>
 			  
 			  <div class="form-group">
@@ -60,8 +70,14 @@
 				  <div class="input-group-prepend">
 					<span class="input-group-text"><i class="icon-mail-alt"></i></span>
 				  </div>
-				  <input name="email" type="text" class="form-control" placeholder="Email" aria-label="Email">
+				  <input name="email" type="text" class="form-control" placeholder="Email" aria-label="Email" <?php if (isset($_SESSION['emailAttempt'])) echo 'value="'.$_SESSION['emailAttempt'].'"' ; ?>>
 				</div>
+				<?php
+					if(isset($_SESSION['errorEmail'])){
+						echo '<span class="errorNotyfication">'.$_SESSION['errorEmail'].'</span>';
+						unset($_SESSION['errorEmail']);
+					}
+				?>
 			  </div>
 			  
 			  
@@ -71,7 +87,7 @@
 				  <div class="input-group-prepend">
 					<span class="input-group-text"><i class="icon-lock"></i></span>
 				  </div>
-				  <input name="password" type="password" class="form-control" placeholder="Password" aria-label="Password">
+				  <input name="password1" type="password" class="form-control" placeholder="Password" aria-label="Password">
 				</div>
 			  </div>
 			  
@@ -81,11 +97,37 @@
 				  <div class="input-group-prepend">
 					<span class="input-group-text"><i class="icon-lock"></i></span>
 				  </div>
-				  <input name="repeatedPassword" type="password" class="form-control" placeholder="Repeat password" aria-label="repeatedPassword">
+				  <input name="password2" type="password" class="form-control" placeholder="Repeat password" aria-label="repeatedPassword">
 				</div>
+				<?php
+					if(isset($_SESSION['errorPassword'])){
+						echo '<span class="errorNotyfication">'.$_SESSION['errorPassword'].'</span>';
+						unset($_SESSION['errorPassword']);
+					}
+				?>
 			  </div>
-			  
-			  <button type="submit" class="btn btn-primary btn-block mt-2">Register</button>
+			  <div class="form-check">
+			  <label>
+				<input type="checkbox" class="form-check-input" name="termsAndConditions">
+				I accept the terms and conditions
+				</label>
+			  </div>
+			  <?php
+					if(isset($_SESSION['errorTermsAndConditions'])){
+						echo '<span class="errorNotyfication">'.$_SESSION['errorTermsAndConditions'].'</span>';
+						unset($_SESSION['errorTermsAndConditions']);
+					}
+				?>
+				
+				<div style="max-width:50%; margin:auto;" class="g-recaptcha" data-sitekey="6Lcis_oZAAAAACLypmyEUzGJOqq0u3AzA24k-BAt"></div>
+				<?php
+					if(isset($_SESSION['errorCaptcha']))
+					{
+						echo '<div class="errorNotyfication">'.$_SESSION['errorCaptcha'].'</div>';
+						unset($_SESSION['errorCaptcha']);
+					}
+				?>
+			  <button type="submit" class="btn btn-primary btn-block mt-4 ">Register</button>
 			</form>
 		</main>
 		<footer>
