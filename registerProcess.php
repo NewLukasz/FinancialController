@@ -1,5 +1,8 @@
 <?php
 
+// klucz witryny 6Lcis_oZAAAAACLypmyEUzGJOqq0u3AzA24k-BAt
+// tajny klucz 6Lcis_oZAAAAAAguJS9SQ96H9qJotRWKyXt9DkKp
+
 if(isset($_POST['email'])){
 	session_start();
 	$validationStatus=true;
@@ -40,9 +43,21 @@ if(isset($_POST['email'])){
 		$validationStatus=false;
 		$_SESSION['errorTermsAndConditions']="Please accept terms and conditions";
 	}
+	//captcha validation
+	$secret = "6Lcis_oZAAAAAAguJS9SQ96H9qJotRWKyXt9DkKp";
+		
+	$check = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret='.$secret.'&response='.$_POST['g-recaptcha-response']);
+		
+	$answer=json_decode($check);
+	
+	if($answer->success==false){
+		$validationStatus=false;
+		$_SESSION['errorCaptcha']="Confirm that you are not a bot";
+	}
 	
 	
 	if($validationStatus==false){
+		
 		header('Location: register.php');
 	}
 }else{
