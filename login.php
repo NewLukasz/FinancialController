@@ -1,3 +1,11 @@
+<?php
+	session_start();
+	if(isset($_SESSION['loggedInUserId'])){
+		header('Location: dashboard.php');
+		exit();
+	}
+?>
+
 <!DOCTYPE html>
 <html lang="pl">
 
@@ -31,10 +39,10 @@
 				<ul class="navbar-nav mx-auto">
 					<ul class="list-inline">
 						<li class="nav-item list-inline-item active">
-							<a class="nav-link" href="login.html"> Login </a>
+							<a class="nav-link" href="login.php"> Login </a>
 						</li>
 						<li class="nav-item list-inline-item">
-							<a class="nav-link" href="register.html"> Register </a>
+							<a class="nav-link" href="register.php"> Register </a>
 						</li>
 					</ul>
 				</ul>
@@ -42,7 +50,7 @@
 		</header>
 	
 		<main>
-			<form class="loginAndRegisterForm">
+			<form class="loginAndRegisterForm" action="loggingin.php" method="post">
 			  <div class="form-group">
 				<label>Type your user name:</label>
 				
