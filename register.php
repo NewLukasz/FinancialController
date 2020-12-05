@@ -105,7 +105,12 @@
 					}
 				?>
 			  </div>
-			  
+			  <div class="form-check">
+			  <label>
+				<input type="checkbox" class="form-check-input">
+				I accept the terms and conditions
+				</label>
+			  </div>
 			  <button type="submit" class="btn btn-primary btn-block mt-2">Register</button>
 			</form>
 		</main>
