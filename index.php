@@ -29,7 +29,7 @@
 				<ul class="navbar-nav mx-auto">
 					<ul class="list-inline">
 						<li class="nav-item list-inline-item ">
-							<a class="nav-link" href="login.html"> Login </a>
+							<a class="nav-link" href="login.php"> Login </a>
 						</li>
 						<li class="nav-item list-inline-item">
 							<a class="nav-link" href="register.html"> Register </a>

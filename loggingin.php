@@ -1,6 +1,11 @@
 <?php
 session_start();
 
+if(isset($_SESSION['loggedInUserId'])){
+	header('Location: dashboard.php');
+	exit();
+}
+
 if( isset($_POST['username'])){
 	$username=filter_input(INPUT_POST,'username');
 	$password=filter_input(INPUT_POST,'password');
