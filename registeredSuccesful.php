@@ -4,6 +4,10 @@
 		header('Location: dashboard.php');
 		exit();
 	}
+	if(!isset($_SESSION['registerResult'])){
+		header('Location:index.php');
+		exit();
+	}
 ?>
 
 <!DOCTYPE html>

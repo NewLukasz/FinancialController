@@ -127,7 +127,7 @@
 						unset($_SESSION['errorCaptcha']);
 					}
 				?>
-			  <button type="submit" class="btn btn-primary btn-block mt-2">Register</button>
+			  <button type="submit" class="btn btn-primary btn-block mt-4 ">Register</button>
 			</form>
 		</main>
 		<footer>

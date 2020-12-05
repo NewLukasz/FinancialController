@@ -73,6 +73,7 @@ if(isset($_POST['email'])){
 	$query->bindValue(':email',$safetyEmail,PDO::PARAM_STR);
 	$query->execute();
 	header('Location: registeredSuccesful.php');
+	$_SESSION['registerResult']=true;
 }else{
 	header('Location: index.php');
 	exit();
