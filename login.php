@@ -50,7 +50,7 @@
 		</header>
 	
 		<main>
-			<form class="loginAndRegisterForm" action="loggingin.php" method="post">
+			<form class="loginAndRegisterForm" action="loginProcess.php" method="post">
 			  <div class="form-group">
 				<label>Type your user name:</label>
 				
