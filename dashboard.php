@@ -3,9 +3,6 @@
 	if(!isset($_SESSION['loggedInUserId'])){
 		header('Location: index.php');
 		exit();
-	}else{
-		echo "Witaj uzytkowniku o id=".$_SESSION['loggedInUserId'];
-	}
 ?>
 
 <!DOCTYPE html>
