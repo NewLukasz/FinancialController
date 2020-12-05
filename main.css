@@ -57,3 +57,10 @@ footer
 		margin-left: 20px;
 	}
 }
+
+.errorNotyfication
+{
+	text-align: center;
+	color: red;
+	font-size: 20px;
+}
