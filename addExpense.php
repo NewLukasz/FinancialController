@@ -28,7 +28,7 @@
 	<body>
 		<header>
 			<div id="logo">
-				<a href="index.html"><img class="img-fluid my-3 d-block mx-auto" src="images/logo.png"></a>
+				<a href="index.php"><img class="img-fluid my-3 d-block mx-auto" src="images/logo.png"></a>
 			</div>
 			<nav class="navbar navbar-dark bg-navbar navbar-expand-lg">
 		
@@ -40,13 +40,13 @@
 			
 				<ul class="navbar-nav mx-auto">
 					<li class="nav-item">
-						<a class="nav-link" href="dashboard.html"><i class="icon-home"></i>Main page</a>
+						<a class="nav-link" href="dashboard.php"><i class="icon-home"></i>Main page</a>
+					</li>
+					<li class="nav-item ">
+						<a class="nav-link" href="addIncome.php"><i class="icon-dollar"></i>Add income</a>
 					</li>
 					<li class="nav-item active">
-						<a class="nav-link" href="addIncome.html"><i class="icon-dollar"></i>Add income</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="addExpense.html"><i class="icon-basket"></i>Add expense</a>
+						<a class="nav-link" href="addExpense.php"><i class="icon-basket"></i>Add expense</a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" href="#"><i class="icon-chart-pie"></i>Balance</a>
@@ -55,7 +55,7 @@
 						<a class="nav-link" href="#"><i class="icon-wrench"></i>Settings</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="index.html"><i class="icon-logout"></i>Logout</a>
+						<a class="nav-link" href="index.php"><i class="icon-logout"></i>Logout</a>
 					</li>
 				</ul>
 			</div>
@@ -66,13 +66,13 @@
 		<main>
 			<div class="financialMovementsForm">
 			<div class="form-group">
-				<label>Type amount of income:</label>
+				<label>Type cost of expense:</label>
 				
 				<div class="input-group mb-3">
 				  <div class="input-group-prepend">
-					<span class="input-group-text"><i class="icon-money"></i></span>
+					<span class="input-group-text"><i class="icon-basket"></i></span>
 				 </div>
-				 <input name="amount" type="text" class="form-control" placeholder="Amount" aria-label="Amount">
+				 <input name="cost" type="text" class="form-control" placeholder="Cost" aria-label="Cost">
 				</div>
 			</div>
 			  
@@ -83,15 +83,35 @@
 				  <div class="input-group-prepend">
 					<span class="input-group-text"><i class="icon-calendar"></i></span>
 				  </div>
-				  <input  name="dateOfIncome" id="datePicker" type="text" class="form-control" aria-label="Date">
+				  <input  name="dateOfExpense" id="datePicker" type="text" class="form-control" aria-label="Date">
 				</div>
 			</div>
-			<label>Choose source of income: </label>
-			<select class="form-control mb-3" id="sourceOfIncome">
-				<option>Salary</option>
-				<option>Bank interest</option>
-				<option>Allegro sales</option>
-				<option>Others</option>
+			<label>Choose payment method: </label>
+			<select class="form-control mb-3" id="PaymentMethod">
+				<option>Cash</option>
+				<option>Credit card</option>
+				<option>Debit card</option>
+				<option>Other</option>
+			</select>
+			
+			<label>Choose category: </label>
+			<select class="form-control mb-3" id="expenseCategory">
+				<option>Food</option>
+				<option>Rent</option>
+				<option>Transport</option>
+				<option>Comunication</option>
+				<option>Healthy</option>
+				<option>Clothes</option>
+				<option>Hygiene</option>
+				<option>Children</option>
+				<option>Trip</option>
+				<option>Courses</option>
+				<option>Books</option>
+				<option>Saving</option>
+				<option>Pension</option>
+				<option>Debt</option>
+				<option>Donation</option>
+				<option>Other</option>
 			</select>
 			
 			<div class="form-group">

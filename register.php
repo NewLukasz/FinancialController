@@ -24,16 +24,16 @@
 	<body>
 		<header>
 			<div id="logo">
-				<a href="index.html"><img class="img-fluid my-3 d-block mx-auto" src="images/logo.png"></a>
+				<a href="index.php"><img class="img-fluid my-3 d-block mx-auto" src="images/logo.png"></a>
 			</div>
 			<nav class="navbar navbar-dark bg-navbar">
 				<ul class="navbar-nav mx-auto">
 					<ul class="list-inline">
 						<li class="nav-item list-inline-item ">
-							<a class="nav-link" href="login.html"> Login </a>
+							<a class="nav-link" href="login.php"> Login </a>
 						</li>
 						<li class="nav-item list-inline-item active">
-							<a class="nav-link" href="register.html"> Register </a>
+							<a class="nav-link" href="register.php"> Register </a>
 						</li>
 					</ul>
 				</ul>

@@ -33,7 +33,7 @@
 		<header>
 			<div id="logo">
 			
-				<a href="index.html"><img class="img-fluid my-3 d-block mx-auto" src="images/logo.png"></a>
+				<a href="index.php"><img class="img-fluid my-3 d-block mx-auto" src="images/logo.png"></a>
 			</div>
 			<nav class="navbar navbar-dark bg-navbar">
 				<ul class="navbar-nav mx-auto">
@@ -77,7 +77,6 @@
 				<label class="form-check-label">Remember me</label>
 			  </div>
 			  <button type="submit" class="btn btn-primary btn-block mt-2">Login</button>
-			  <a class="btn btn-success btn-block" href="dashboard.html" role="button">Go to logged in page!</a>
 			</form>
 		</main>
 		<footer>
