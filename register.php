@@ -1,3 +1,6 @@
+<?php
+	session_start();
+?>
 <!DOCTYPE html>
 <html lang="pl">
 
@@ -41,7 +44,7 @@
 		</header>
 	
 		<main>
-			<form class="loginAndRegisterForm">
+			<form class="loginAndRegisterForm" action="registerProcess.php" method="post">
 			  <div class="form-group">
 				<label>Type your user name:</label>
 				
@@ -51,6 +54,12 @@
 				  </div>
 				  <input name="username" type="text" class="form-control" placeholder="Username" aria-label="Username">
 				</div>
+				<?php
+					if(isset($_SESSION['errorUsername'])){
+						echo '<span class="errorNotyfication">'.$_SESSION['errorUsername'].'</span>';
+						unset($_SESSION['errorUsername']);
+					}
+				?>
 			  </div>
 			  
 			  <div class="form-group">
@@ -62,6 +71,12 @@
 				  </div>
 				  <input name="email" type="text" class="form-control" placeholder="Email" aria-label="Email">
 				</div>
+				<?php
+					if(isset($_SESSION['errorEmail'])){
+						echo '<span class="errorNotyfication">'.$_SESSION['errorEmail'].'</span>';
+						unset($_SESSION['errorEmail']);
+					}
+				?>
 			  </div>
 			  
 			  
@@ -71,7 +86,7 @@
 				  <div class="input-group-prepend">
 					<span class="input-group-text"><i class="icon-lock"></i></span>
 				  </div>
-				  <input name="password" type="password" class="form-control" placeholder="Password" aria-label="Password">
+				  <input name="password1" type="password" class="form-control" placeholder="Password" aria-label="Password">
 				</div>
 			  </div>
 			  
@@ -81,8 +96,14 @@
 				  <div class="input-group-prepend">
 					<span class="input-group-text"><i class="icon-lock"></i></span>
 				  </div>
-				  <input name="repeatedPassword" type="password" class="form-control" placeholder="Repeat password" aria-label="repeatedPassword">
+				  <input name="password2" type="password" class="form-control" placeholder="Repeat password" aria-label="repeatedPassword">
 				</div>
+				<?php
+					if(isset($_SESSION['errorPassword'])){
+						echo '<span class="errorNotyfication">'.$_SESSION['errorPassword'].'</span>';
+						unset($_SESSION['errorPassword']);
+					}
+				?>
 			  </div>
 			  
 			  <button type="submit" class="btn btn-primary btn-block mt-2">Register</button>
