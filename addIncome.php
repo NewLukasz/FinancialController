@@ -4,6 +4,16 @@
 		header('Location: index.php');
 		exit();
 	}
+	if(!isset($_SESSION['loadSourcesOfIncome'])){
+		require_once "database.php";
+		$_SESSION['loadSourcesOfIncome']=[];
+		foreach($_SESSION['loadedIdSourcesOfIncome'] as $loadedIdSource){
+			$sourcesNameQuery=$db->query("SELECT incomeCategoryName FROM incomecategory WHERE idIncomeCategory='$loadedIdSource'");
+			$sourceNameQueryResult=$sourcesNameQuery->fetch();
+			$sourceName=$sourceNameQueryResult['incomeCategoryName'];
+			array_push($_SESSION['loadSourcesOfIncome'],$sourceName);
+		}
+	}
 ?>
 <!DOCTYPE html>
 <html lang="pl">
@@ -95,10 +105,11 @@
 			</div>
 			<label>Choose source of income: </label>
 			<select class="form-control mb-3" name="sourceOfIncome" >
-				<option>Salary</option>
-				<option>Bank interest</option>
-				<option>Allegro sales</option>
-				<option>Others</option>
+				<?php 
+				foreach($_SESSION['loadSourcesOfIncome']as $loadedSource){
+					echo"<option>".$loadedSource."</option>";
+				}
+				?>
 			</select>
 			
 			<div class="form-group">

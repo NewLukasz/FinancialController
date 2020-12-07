@@ -27,14 +27,13 @@ if( isset($_POST['username'])){
 		foreach($sourcesOfIncome as $sourceOfIncome){
 			array_push($sourcesOfIncomeLoaded,$sourceOfIncome['idIncomeCategory']);
 		}
-		$_SESSION['loadedSourcesOfIncome']=$sourcesOfIncomeLoaded;
+		$_SESSION['loadedIdSourcesOfIncome']=$sourcesOfIncomeLoaded;
 		header('Location: dashboard.php');	
 	}else{
 		$_SESSION['badAttemptLogin'] = $username;
 		header('Location: login.php');
 		exit();
 	}
-	
 }else{
 	header('Location:login.php');
 	exit();
