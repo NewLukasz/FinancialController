@@ -17,7 +17,11 @@ function checkIsAValidDate($myDateString){
 	for($i=0;$i<strlen($myDateString);$i++){
 		if($myDateString[$i]=='-') $pauseCounter++;
 	}
-	return ($pauseCounter==2)? (bool)strtotime($myDateString) : false;
+	return ($pauseCounter==2)?(bool)strtotime($myDateString):false;
+}
+
+function checkLengthOfComment($comment){
+	return strlen($comment)<=50?true:false;
 }
 
 //ile znakow ma komentarz

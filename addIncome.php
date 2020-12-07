@@ -102,7 +102,7 @@
 			</select>
 			
 			<div class="form-group">
-				<label>Comment:</label>
+				<label>Comment (max. 50 signs):</label>
 				<div class="input-group mb-3">
 				  <div class="input-group-prepend">
 					<span class="input-group-text"><i class="icon-pencil"></i></span>

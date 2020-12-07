@@ -23,10 +23,15 @@ if(!is_numeric($amount)){
 }
 
 $dateOfIncome=$_POST['dateOfIncome'];
-
 if(!checkIsAValidDate($dateOfIncome)){
 	$incomeValidation=false;
 	echo "Podana data jest nieprawidlowa";
+}
+
+$comment=$_POST['comment'];
+if(!checkLengthOfComment($comment)){
+	$incomeValidation=false;
+	echo "Podany komentarz jest zbyt długi";
 }
 
 echo $amount."<br/>";
