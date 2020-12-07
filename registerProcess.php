@@ -72,6 +72,26 @@ if(isset($_POST['email'])){
 	$query->bindValue(':password',$hashedPassword, PDO::PARAM_STR);
 	$query->bindValue(':email',$safetyEmail,PDO::PARAM_STR);
 	$query->execute();
+	
+	$idUserQuery=$db->query("SELECT idUser FROM users WHERE username='$username'");
+	$idUserQueryResult=$idUserQuery->fetch();
+	$idUser=$idUserQueryResult['idUser'];
+	
+	$NUMBER_OF_DEFAULT_EXPENSE_CATEGORY=17;
+	for($i=1;$i<=$NUMBER_OF_DEFAULT_EXPENSE_CATEGORY;$i++){
+		$query=$db->query("INSERT INTO expensecategorywithuser VALUES(NULL,'$idUser','$i')");
+	}
+	
+	$NUMBER_OF_DEFAULT_SOURCE_OF_INCOME=4;
+	for($i=1;$i<=$NUMBER_OF_DEFAULT_SOURCE_OF_INCOME;$i++){
+			$query=$db->query("INSERT INTO incomecategorywithuser VALUES(NULL,'$idUser','$i')");
+	}
+	
+	$NUMBER_OF_DEFAULT_PAYMENTS_METHODS=3;
+	for($i=1;$i<=$NUMBER_OF_DEFAULT_PAYMENTS_METHODS;$i++){
+		$query=$db->query("INSERT INTO paymentmethodswithuser VALUES(NULL,'$idUser','$i')");
+	}
+	
 	header('Location: registeredSuccesful.php');
 	$_SESSION['registerResult']=true;
 }else{
