@@ -71,7 +71,7 @@
 		</header>
 	
 		<main>
-			<div class="financialMovementsForm">
+		<form class="financialMovementsForm" action="addIncomeProcess.php" method="post">
 			<div class="form-group">
 				<label>Type amount of income:</label>
 				
@@ -94,7 +94,7 @@
 				</div>
 			</div>
 			<label>Choose source of income: </label>
-			<select class="form-control mb-3" id="sourceOfIncome">
+			<select class="form-control mb-3" name="sourceOfIncome" >
 				<option>Salary</option>
 				<option>Bank interest</option>
 				<option>Allegro sales</option>
@@ -102,7 +102,7 @@
 			</select>
 			
 			<div class="form-group">
-				<label>Comment:</label>
+				<label>Comment (max. 50 signs):</label>
 				<div class="input-group mb-3">
 				  <div class="input-group-prepend">
 					<span class="input-group-text"><i class="icon-pencil"></i></span>
@@ -111,9 +111,8 @@
 				</div>
 			</div>
 			  
-			  <button type="button" class="btn btn-primary btn-block mt-2">Add income</button>
+			  <button type="submit" class="btn btn-primary btn-block mt-2">Add income</button>
 			</form>
-			</div>
 		</main>
 		<footer>
 			financialController.com &copy 2020
