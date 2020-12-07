@@ -106,8 +106,8 @@
 			<label>Choose source of income: </label>
 			<select class="form-control mb-3" name="sourceOfIncome" >
 				<?php 
-				foreach($_SESSION['loadSourcesOfIncome']as $loadedSource){
-					echo"<option>".$loadedSource."</option>";
+				foreach($_SESSION['loadSourcesOfIncome'] as $loadedSourcesOfIncome){
+					echo"<option>".$loadedSourcesOfIncome."</option>";
 				}
 				?>
 			</select>
