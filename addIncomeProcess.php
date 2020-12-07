@@ -35,17 +35,20 @@ if(!checkLengthOfComment($comment)){
 }
 $userId=$_SESSION['loggedInUserId'];
 
-require_once "database.php";
+if($incomeValidation=true){
+	require_once "database.php";
 
-//wyjete z zapytania:
+	$idOfIncomeCategory=array_search($_POST['sourceOfIncome'],$_SESSION['sourcesOfIncome']);
 
-$query=$db->prepare('INSERT INTO incomes VALUES(NULL,:idUser,:idIncomeCategory,:amount,:dateOfIncome,:incomeComment)');
-$query->bindValue(':idUser',$userId,PDO::PARAM_INT);
-$query->bindValue(':idIncomeCategory',$_POST['sourceOfIncome'],PDO::PARAM_INT);//tutaj moze byc problem bo wpisany jest string?
-$query->bindValue(':amount',$_POST['amount'],PDO::PARAM_STR);
-$query->bindValue(':dateOfIncome',$_POST['dateOfIncome'],PDO::PARAM_STR);
-$query->bindValue(':incomeComment',$_POST['comment'],PDO::PARAM_STR);
-$query->execute();
+	$query=$db->prepare('INSERT INTO incomes VALUES(NULL,:idUser,:idIncomeCategory,:amount,:dateOfIncome,:incomeComment)');
+	$query->bindValue(':idUser',$userId,PDO::PARAM_INT);
+	$query->bindValue(':idIncomeCategory',$idOfIncomeCategory,PDO::PARAM_INT);//tutaj moze byc problem bo wpisany jest string?
+	$query->bindValue(':amount',$_POST['amount'],PDO::PARAM_STR);
+	$query->bindValue(':dateOfIncome',$_POST['dateOfIncome'],PDO::PARAM_STR);
+	$query->bindValue(':incomeComment',$_POST['comment'],PDO::PARAM_STR);
+	$query->execute();
+}
+
 
 
 echo $amount."<br/>";
