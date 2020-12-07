@@ -29,10 +29,7 @@ if( isset($_POST['username'])){
 			$sourcesOfIncomeLoaded+=[
 				$incomeCategory['idIncomeCategory']=>$incomeCategory['incomeCategoryName']
 			];
-		}
-		
-		print_r($sourcesOfIncomeLoaded);
-		
+		}		
 		$_SESSION['sourcesOfIncome']=$sourcesOfIncomeLoaded;
 		header('Location: dashboard.php');	
 	}else{
