@@ -21,13 +21,19 @@ if( isset($_POST['username'])){
 		$_SESSION['loggedInUserId'] = $user['idUser'];
 		$idUser=$user['idUser'];
 		unset($_SESSION['badAttemptLogin']);
-		$sourcesOfIncomeQuery=$db->query("SELECT idIncomeCategory FROM incomecategorywithuser WHERE userId='$idUser'");
-		$sourcesOfIncome=$sourcesOfIncomeQuery->fetchAll();
+		
+		$incomeCategoryQuery=$db->query("SELECT incomecategorywithuser.idIncomeCategory, incomecategory.incomeCategoryName FROM incomecategory, incomecategorywithuser WHERE incomecategorywithuser.userId='$idUser' AND incomecategorywithuser.idIncomeCategory=incomecategory.idIncomeCategory");
+		$incomesCategories=$incomeCategoryQuery->fetchAll();
 		$sourcesOfIncomeLoaded=[];
-		foreach($sourcesOfIncome as $sourceOfIncome){
-			array_push($sourcesOfIncomeLoaded,$sourceOfIncome['idIncomeCategory']);
+		foreach($incomesCategories as $incomeCategory){
+			$sourcesOfIncomeLoaded+=[
+				$incomeCategory['idIncomeCategory']=>$incomeCategory['incomeCategoryName']
+			];
 		}
-		$_SESSION['loadedIdSourcesOfIncome']=$sourcesOfIncomeLoaded;
+		
+		print_r($sourcesOfIncomeLoaded);
+		
+		$_SESSION['sourcesOfIncome']=$sourcesOfIncomeLoaded;
 		header('Location: dashboard.php');	
 	}else{
 		$_SESSION['badAttemptLogin'] = $username;
