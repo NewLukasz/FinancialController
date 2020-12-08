@@ -14,24 +14,24 @@ $amount=$_POST['amount'];
 $amount=checkCommaAndChangeForDot($amount);
 if(checkHowManyDecimalPlacesHasAmount($amount)>2){
 	$incomeValidation=false;
-	echo "Powyzej dwa miejsca po przecinku<br/>";
+	$_SESSION['amountError']="Your amount has more that 2 digit after coma";
 }
 
 if(!is_numeric($amount)){
 	$incomeValidation=false;
-	echo "Podana wartosc to nie liczba<br/>";
+	$_SESSION['amountError']="Your amount is not a number";
 }
 
 $dateOfIncome=$_POST['dateOfIncome'];
 if(!checkIsAValidDate($dateOfIncome)){
 	$incomeValidation=false;
-	echo "Podana data jest nieprawidlowa";
+	$_SESSION['dateError']="You typed wrong data. Please remeber that format is: YYYY-MM-DD";
 }
 
 $comment=$_POST['comment'];
 if(!checkLengthOfComment($comment)){
 	$incomeValidation=false;
-	echo "Podany komentarz jest zbyt długi";
+	$_SESSION['commentError']="Your comment is too long you can insert up to 50 signs";
 }
 $userId=$_SESSION['loggedInUserId'];
 
