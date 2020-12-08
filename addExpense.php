@@ -96,30 +96,20 @@
 			</div>
 			<label>Choose payment method: </label>
 			<select class="form-control mb-3" id="PaymentMethod">
-				<option>Cash</option>
-				<option>Credit card</option>
-				<option>Debit card</option>
-				<option>Other</option>
+				<?php 
+				foreach($_SESSION['paymentMethods']as $method){
+						echo "<option>".$method."</option>";
+				}
+				?>
 			</select>
 			
 			<label>Choose category: </label>
 			<select class="form-control mb-3" id="expenseCategory">
-				<option>Food</option>
-				<option>Rent</option>
-				<option>Transport</option>
-				<option>Comunication</option>
-				<option>Healthy</option>
-				<option>Clothes</option>
-				<option>Hygiene</option>
-				<option>Children</option>
-				<option>Trip</option>
-				<option>Courses</option>
-				<option>Books</option>
-				<option>Saving</option>
-				<option>Pension</option>
-				<option>Debt</option>
-				<option>Donation</option>
-				<option>Other</option>
+				<?php 
+				foreach($_SESSION['categoriesOfExpense']as $category){
+						echo "<option>".$category."</option>";
+				}
+				?>
 			</select>
 			
 			<div class="form-group">

@@ -29,7 +29,22 @@ if( isset($_POST['username'])){
 		$_SESSION['sourcesOfIncome']=[];
 		foreach($incomesCategories as $incomeCategory){
 			array_push($_SESSION['sourcesOfIncome'],$incomeCategory['name']);		
-		}				
+		}
+		
+		$expenseCategoryQuery=$db->query("SELECT name FROM expenses_category_assigned_to_users WHERE user_id='$idUser'");
+		$expenseCategories=$expenseCategoryQuery->fetchAll();
+		$_SESSION['categoriesOfExpense']=[];
+		foreach($expenseCategories as $expenseCategory){
+			array_push($_SESSION['categoriesOfExpense'],$expenseCategory['name']);		
+		}
+		
+		$paymentMethodQuery=$db->query("SELECT name FROM payment_methods_assigned_to_users WHERE user_id='$idUser'");
+		$paymentMethods=$paymentMethodQuery->fetchAll();
+		$_SESSION['paymentMethods']=[];
+		foreach($paymentMethods as $paymentMethod){
+			array_push($_SESSION['paymentMethods'],$paymentMethod['name']);		
+		}
+		
 		
 		header('Location: dashboard.php');	
 	}else{
