@@ -12,25 +12,25 @@ if( isset($_POST['username'])){
 	
 	require_once "database.php";
 	
-	$userQuery = $db->prepare('SELECT idUser,password FROM users WHERE users.username=:username');
+	$userQuery = $db->prepare('SELECT id,password FROM users WHERE username=:username');
 	$userQuery->bindValue(':username',$username, PDO::PARAM_STR);
 	$userQuery->execute();
 	
 	$user=$userQuery->fetch();		//result is asociative array
 	if($user && password_verify($password,$user['password'])){
-		$_SESSION['loggedInUserId'] = $user['idUser'];
-		$idUser=$user['idUser'];
+		$_SESSION['loggedInUserId'] = $user['id'];
+		$idUser=$user['id'];
 		unset($_SESSION['badAttemptLogin']);
-		/* //Ładowanie kategorii przypisanych dla użytkownika
-		$incomeCategoryQuery=$db->query("SELECT incomecategorywithuser.idIncomeCategory, incomecategory.incomeCategoryName FROM incomecategory, incomecategorywithuser WHERE incomecategorywithuser.userId='$idUser' AND incomecategorywithuser.idIncomeCategory=incomecategory.idIncomeCategory");
+		
+		
+		
+		$incomeCategoryQuery=$db->query("SELECT name FROM incomes_category_assigned_to_users WHERE user_id='$idUser'");
 		$incomesCategories=$incomeCategoryQuery->fetchAll();
-		$sourcesOfIncomeLoaded=[];
+		$_SESSION['sourcesOfIncome']=[];
 		foreach($incomesCategories as $incomeCategory){
-			$sourcesOfIncomeLoaded+=[
-				$incomeCategory['idIncomeCategory']=>$incomeCategory['incomeCategoryName']
-			];
-		}		
-		$_SESSION['sourcesOfIncome']=$sourcesOfIncomeLoaded;*/
+			array_push($_SESSION['sourcesOfIncome'],$incomeCategory['name']);		
+		}				
+		
 		header('Location: dashboard.php');	
 	}else{
 		$_SESSION['badAttemptLogin'] = $username;
