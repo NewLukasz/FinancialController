@@ -21,7 +21,7 @@ if( isset($_POST['username'])){
 		$_SESSION['loggedInUserId'] = $user['idUser'];
 		$idUser=$user['idUser'];
 		unset($_SESSION['badAttemptLogin']);
-		
+		/* //Ładowanie kategorii przypisanych dla użytkownika
 		$incomeCategoryQuery=$db->query("SELECT incomecategorywithuser.idIncomeCategory, incomecategory.incomeCategoryName FROM incomecategory, incomecategorywithuser WHERE incomecategorywithuser.userId='$idUser' AND incomecategorywithuser.idIncomeCategory=incomecategory.idIncomeCategory");
 		$incomesCategories=$incomeCategoryQuery->fetchAll();
 		$sourcesOfIncomeLoaded=[];
@@ -30,7 +30,7 @@ if( isset($_POST['username'])){
 				$incomeCategory['idIncomeCategory']=>$incomeCategory['incomeCategoryName']
 			];
 		}		
-		$_SESSION['sourcesOfIncome']=$sourcesOfIncomeLoaded;
+		$_SESSION['sourcesOfIncome']=$sourcesOfIncomeLoaded;*/
 		header('Location: dashboard.php');	
 	}else{
 		$_SESSION['badAttemptLogin'] = $username;

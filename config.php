@@ -3,6 +3,6 @@
 	'host'=>'localhost',
 	'user'=>'root',
 	'password'=>'',
-	'database'=>'financialcontroller',
+	'database'=>'fcdatabase',
 	];
 ?>
