@@ -24,25 +24,25 @@ if( isset($_POST['username'])){
 		
 		
 		
-		$incomeCategoryQuery=$db->query("SELECT name FROM incomes_category_assigned_to_users WHERE user_id='$idUser'");
+		$incomeCategoryQuery=$db->query("SELECT name, id FROM incomes_category_assigned_to_users WHERE user_id='$idUser'");
 		$incomesCategories=$incomeCategoryQuery->fetchAll();
 		$_SESSION['sourcesOfIncome']=[];
 		foreach($incomesCategories as $incomeCategory){
-			array_push($_SESSION['sourcesOfIncome'],$incomeCategory['name']);		
+			$_SESSION['sourcesOfIncome']+=[$incomeCategory['id']=>$incomeCategory['name']];
 		}
 		
-		$expenseCategoryQuery=$db->query("SELECT name FROM expenses_category_assigned_to_users WHERE user_id='$idUser'");
+		$expenseCategoryQuery=$db->query("SELECT name, id FROM expenses_category_assigned_to_users WHERE user_id='$idUser'");
 		$expenseCategories=$expenseCategoryQuery->fetchAll();
 		$_SESSION['categoriesOfExpense']=[];
 		foreach($expenseCategories as $expenseCategory){
-			array_push($_SESSION['categoriesOfExpense'],$expenseCategory['name']);		
+			$_SESSION['categoriesOfExpense']+=[$expenseCategory['id']=>$expenseCategory['name']];	
 		}
 		
-		$paymentMethodQuery=$db->query("SELECT name FROM payment_methods_assigned_to_users WHERE user_id='$idUser'");
+		$paymentMethodQuery=$db->query("SELECT name, id FROM payment_methods_assigned_to_users WHERE user_id='$idUser'");
 		$paymentMethods=$paymentMethodQuery->fetchAll();
 		$_SESSION['paymentMethods']=[];
 		foreach($paymentMethods as $paymentMethod){
-			array_push($_SESSION['paymentMethods'],$paymentMethod['name']);		
+			$_SESSION['paymentMethods']+=[$paymentMethod['id']=>$paymentMethod['name']];	
 		}
 		
 		

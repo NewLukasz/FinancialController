@@ -35,15 +35,15 @@ if(!checkLengthOfComment($comment)){
 }
 $userId=$_SESSION['loggedInUserId'];
 
-if($incomeValidation=true){
+if($incomeValidation==true){
 	require_once "database.php";
 
 	$idOfIncomeCategory=array_search($_POST['sourceOfIncome'],$_SESSION['sourcesOfIncome']);
 
 	$query=$db->prepare('INSERT INTO incomes VALUES(NULL,:idUser,:idIncomeCategory,:amount,:dateOfIncome,:incomeComment)');
 	$query->bindValue(':idUser',$userId,PDO::PARAM_INT);
-	$query->bindValue(':idIncomeCategory',$idOfIncomeCategory,PDO::PARAM_INT);//tutaj moze byc problem bo wpisany jest string?
-	$query->bindValue(':amount',$_POST['amount'],PDO::PARAM_STR);
+	$query->bindValue(':idIncomeCategory',$idOfIncomeCategory,PDO::PARAM_INT);
+	$query->bindValue(':amount',$amount,PDO::PARAM_STR);
 	$query->bindValue(':dateOfIncome',$_POST['dateOfIncome'],PDO::PARAM_STR);
 	$query->bindValue(':incomeComment',$_POST['comment'],PDO::PARAM_STR);
 	$query->execute();
