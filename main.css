@@ -61,4 +61,12 @@ footer
 .errorNotyfication
 {
 	color: red;
+	font-weight: 700;
+}
+
+
+.successNotyfication
+{
+	font-weight: 700;
+	color: green;
 }

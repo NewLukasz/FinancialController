@@ -47,13 +47,9 @@ if($incomeValidation==true){
 	$query->bindValue(':dateOfIncome',$_POST['dateOfIncome'],PDO::PARAM_STR);
 	$query->bindValue(':incomeComment',$_POST['comment'],PDO::PARAM_STR);
 	$query->execute();
+	$_SESSION['incomeAdded']="Income added successfully.";
 }
 
-
-
-echo $amount."<br/>";
-echo $_POST['dateOfIncome']."<br/>";
-echo $_POST['sourceOfIncome']."<br/>";
-echo $_POST['comment']."<br/>";
+header("Location: addIncome.php")
 
 ?>
