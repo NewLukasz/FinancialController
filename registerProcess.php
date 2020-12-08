@@ -73,23 +73,29 @@ if(isset($_POST['email'])){
 	$query->bindValue(':email',$safetyEmail,PDO::PARAM_STR);
 	$query->execute();
 	
-	$idUserQuery=$db->query("SELECT idUser FROM users WHERE username='$username'");
+	$idUserQuery=$db->query("SELECT id FROM users WHERE username='$username'");
 	$idUserQueryResult=$idUserQuery->fetch();
-	$idUser=$idUserQueryResult['idUser'];
+	$idUser=$idUserQueryResult['id'];
 	
-	$NUMBER_OF_DEFAULT_EXPENSE_CATEGORY=17;
-	for($i=1;$i<=$NUMBER_OF_DEFAULT_EXPENSE_CATEGORY;$i++){
-		$query=$db->query("INSERT INTO expensecategorywithuser VALUES(NULL,'$idUser','$i')");
+	$defaultIncomesCategoryQuery=$db->query("SELECT name FROM incomes_category_default");
+	$defaultIncomesCategoryQueryResult=$defaultIncomesCategoryQuery->fetchAll();
+	foreach($defaultIncomesCategoryQueryResult as $incomeCategory){
+		$categoryName=$incomeCategory['name'];
+		$queryForInsertDefaultIncomeCategory=$db->query("INSERT INTO incomes_category_assigned_to_users VALUES(NULL,'$idUser','$categoryName')");
 	}
 	
-	$NUMBER_OF_DEFAULT_SOURCE_OF_INCOME=4;
-	for($i=1;$i<=$NUMBER_OF_DEFAULT_SOURCE_OF_INCOME;$i++){
-			$query=$db->query("INSERT INTO incomecategorywithuser VALUES(NULL,'$idUser','$i')");
+	$defaultExpenseCategoryQuery=$db->query("SELECT name FROM expenses_category_default");
+	$defaultExpensesCategoryQueryResult=$defaultExpenseCategoryQuery->fetchAll();
+	foreach($defaultExpensesCategoryQueryResult as $expenseCategory){
+		$categoryName=$expenseCategory['name'];
+		$queryForInsertDefaultExpenseCategory=$db->query("INSERT INTO expenses_category_assigned_to_users VALUES(NULL,'$idUser','$categoryName')");
 	}
 	
-	$NUMBER_OF_DEFAULT_PAYMENTS_METHODS=3;
-	for($i=1;$i<=$NUMBER_OF_DEFAULT_PAYMENTS_METHODS;$i++){
-		$query=$db->query("INSERT INTO paymentmethodswithuser VALUES(NULL,'$idUser','$i')");
+	$defaultPaymentMethodCategoryQuery=$db->query("SELECT name FROM payment_methods_default");
+	$defaultPaymentMethodCategoryQueryResult=$defaultPaymentMethodCategoryQuery->fetchAll();
+	foreach($defaultPaymentMethodCategoryQueryResult as $paymentMethodCategory){
+		$categoryName=$paymentMethodCategory['name'];
+		$queryForInsertDefaultPaymentMethodCategory=$db->query("INSERT INTO payment_methods_assigned_to_users VALUES(NULL,'$idUser','$categoryName')");
 	}
 	
 	header('Location: registeredSuccesful.php');

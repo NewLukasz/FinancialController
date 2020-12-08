@@ -26,6 +26,8 @@
 		<link rel="stylesheet" href="main.css">
 		<link rel="stylesheet" type="text/css" href="jquery-ui.min.css">
 		
+		<link rel="stylesheet" href="main.css?v=<?php echo time(); ?>">
+		
 		<script src="jquery-3.5.1.min.js"></script>
 		<script src="jquery-ui.min.js"></script>
 		<script src="script/calendar.js"></script>
@@ -81,6 +83,12 @@
 				 </div>
 				 <input name="amount" type="text" class="form-control" placeholder="Amount" aria-label="Amount">
 				</div>
+				<?php
+					if(isset($_SESSION['amountError'])){
+						echo '<span class="errorNotyfication">'.$_SESSION['amountError'].'</span>';
+						unset($_SESSION['amountError']);
+					}
+				?>
 			</div>
 			  
 			  
@@ -92,6 +100,12 @@
 				  </div>
 				  <input  name="dateOfIncome" id="datePicker" type="text" class="form-control" aria-label="Date">
 				</div>
+				<?php
+					if(isset($_SESSION['dateError'])){
+						echo '<span class="errorNotyfication">'.$_SESSION['dateError'].'</span>';
+						unset($_SESSION['dateError']);
+					}
+				?>
 			</div>
 			<label>Choose source of income: </label>
 			<select class="form-control mb-3" name="sourceOfIncome" >
@@ -110,10 +124,24 @@
 				  </div>
 				  <input name="comment" type="text" class="form-control" placeholder="Comment (optional)" aria-label="Comment">
 				</div>
+				<?php
+					if(isset($_SESSION['commentError'])){
+						echo '<span class="errorNotyfication">'.$_SESSION['commentError'].'</span>';
+						unset($_SESSION['commentError']);
+					}
+				?>
 			</div>
 			  
 			  <button type="submit" class="btn btn-primary btn-block mt-2">Add income</button>
-			</form>
+			  <div class='mx-3'>
+			  <?php
+					if(isset($_SESSION['incomeAdded'])){
+						echo '<span class="successNotyfication">'.$_SESSION['incomeAdded'].'</span>';
+						unset($_SESSION['incomeAdded']);
+					}
+				?>
+				</div>
+		</form>
 		</main>
 		<footer>
 			financialController.com &copy 2020
