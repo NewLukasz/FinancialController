@@ -78,7 +78,7 @@
 							<a class="btn btn-primary btn-block" href="logout.php" role="button"><i class="icon-logout"></i>Logout</a>
 						</div>
 						<div class="col-lg-6 mt-2">
-							<img class="img-fluid d-block mx-auto" src="images/letyoursavingsgrow.png">
+							<img class="img-fluid d-block mx-auto" alt="Growing tree in saving money" src="images/letyoursavingsgrow.png">
 						</div>
 					</div>
 				</div>

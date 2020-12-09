@@ -131,7 +131,7 @@
 			</form>
 		</main>
 		<footer>
-			financialController.com &copy 2020
+			financialController.com &copy; 2020
 		</footer>
 	</body>
 	

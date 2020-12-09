@@ -64,7 +64,7 @@
 								<li>To be financial independent and be able to quit your job if you want.</li>
 								<li>Because of life is to short to spend entite lifetime in work.</li>
 							</ol>
-							<p>All of point above is possible - but your life is only on your own! You have to make a aware decisions and this application will <span class="font-weight-bold">help you<span>. 
+							<p>All of point above is possible - but your life is only on your own! You have to make a aware decisions and this application will <span class="font-weight-bold">help you</span>. 
 							</p>
 							<p>
 							Let me help you with your finances and <span class="font-weight-bold"> register now! </span>
@@ -79,7 +79,7 @@
 			</article>
 		</main>
 		<footer>
-			financialController.com &copy 2020
+			financialController.com &copy; 2020
 		</footer>
 	</body>
 	
