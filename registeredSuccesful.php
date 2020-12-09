@@ -75,14 +75,14 @@
 							</ol>
 						</div>
 						<div class="col-lg-6 mt-2">
-							<img class="img-fluid d-block mx-auto" src="images/letyoursavingsgrow.png">
+							<img class="img-fluid d-block mx-auto" alt="Growing tree in saving money" src="images/letyoursavingsgrow.png">
 						</div>
 					</div>
 				</div>
 			</article>
 		</main>
 		<footer>
-			financialController.com &copy 2020
+			financialController.com &copy; 2020
 		</footer>
 	</body>
 	
