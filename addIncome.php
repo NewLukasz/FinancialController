@@ -26,7 +26,6 @@
 		<link rel="stylesheet" href="main.css">
 		<link rel="stylesheet" type="text/css" href="jquery-ui.min.css">
 		
-		<link rel="stylesheet" href="main.css?v=<?php echo time(); ?>">
 		
 		<script src="jquery-3.5.1.min.js"></script>
 		<script src="jquery-ui.min.js"></script>
@@ -144,7 +143,7 @@
 		</form>
 		</main>
 		<footer>
-			financialController.com &copy 2020
+			financialController.com &copy; 2020
 		</footer>
 	</body>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
