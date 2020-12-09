@@ -17,13 +17,33 @@ if(isset($_POST['email'])){
 			$validationStatus=false;
 			$_SESSION['errorUsername']="Username can contain only letters and digits";
 	}
+	require_once 'database.php';
+	
+	
+	$checkUserNameAvailabilityQuery=$db->query("SELECT username FROM users WHERE username='$username'");
+	$checkUserNameAvailabilityResult=$checkUserNameAvailabilityQuery->fetch();
+	if($checkUserNameAvailabilityResult['username']){
+		$validationStatus=false;
+		$_SESSION['errorUsername']="Choosen username is already in use";
+	}
+	
+	
 	//email validation
+	
 	$email=$_POST['email'];
 	$safetyEmail=filter_var($email,FILTER_SANITIZE_EMAIL);
 	if((filter_var($safetyEmail, FILTER_VALIDATE_EMAIL)==false)||($email!=$safetyEmail)){
 			$validationStatus=false;
 			$_SESSION['errorEmail']="Insert correct e-mail adress";
 	}
+	
+	$checkEmailAvailabilityQuery=$db->query("SELECT email FROM users WHERE email='$email'");
+	$checkEmailAvailabilityResult=$checkEmailAvailabilityQuery->fetch();
+	if($checkEmailAvailabilityResult['email']){
+		$validationStatus=false;
+		$_SESSION['errorEmail']="Choosen email is already in use";
+	}
+	
 	//password validation
 	$password1=$_POST['password1'];
 	$password2=$_POST['password2'];
@@ -65,7 +85,7 @@ if(isset($_POST['email'])){
 	unset($_SESSION['usernameAttempt']);
 	unset($_SESSION['emailAttempt']);
 	
-	require_once 'database.php';
+	
 	
 	$query=$db->prepare('INSERT INTO users VALUES(NULL,:username,:password,:email)');
 	$query->bindValue(':username',$username,PDO::PARAM_STR);
