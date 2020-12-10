@@ -20,8 +20,15 @@ var date=new Date();
 	$("#datePickerSession").datepicker({
 		dateFormat: "yy-mm-dd"
 	});
+	
+
+
+$('#modal').on('shown.bs.modal', function () {
+  $("#datePicker").datepicker({
+		dateFormat: "yy-mm-dd"
+	});
+})
+
 }
-
-
 		
 	
