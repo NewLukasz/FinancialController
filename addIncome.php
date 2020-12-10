@@ -22,11 +22,10 @@
 		<link rel="preconnect" href="https://fonts.gstatic.com">
 		<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
 		
-		<link rel="stylesheet" href="main.css" type="text/css">
 		<link rel="stylesheet" href="css/bootstrap.min.css">
 		<link rel="stylesheet" href="css/fontello.css">
 		<link rel="stylesheet" type="text/css" href="jquery-ui.min.css">	
-		
+		<link rel="stylesheet" href="main.css">
 		
 		<script src="jquery-3.5.1.min.js"></script>
 		<script src="jquery-ui.min.js"></script>
@@ -77,7 +76,7 @@
 			<div class="form-group">
 				<label>Type amount of income:</label>
 				
-				<div class="input-group mb-3">
+				<div class="input-group mb-2">
 				  <div class="input-group-prepend">
 					<span class="input-group-text"><i class="icon-money"></i></span>
 				 </div>
@@ -94,7 +93,7 @@
 			  
 			<div class="form-group">
 				<label>Type date:</label>
-				<div class="input-group mb-3">
+				<div class="input-group mb-2">
 				  <div class="input-group-prepend">
 					<span class="input-group-text"><i class="icon-calendar"></i></span>
 				  </div>
@@ -118,7 +117,7 @@
 				?>
 			</div>
 			<label>Choose source of income: </label>
-			<select class="form-control mb-3" name="sourceOfIncome">
+			<select class="form-control mb-2" name="sourceOfIncome">
 				<option></option>
 				<?php 
 				foreach($_SESSION['sourcesOfIncome']as $source){
@@ -140,7 +139,7 @@
 			?>
 			<div class="form-group mt-3">
 				<label>Comment (max. 50 signs):</label>
-				<div class="input-group mb-3">
+				<div class="input-group mb-2">
 				  <div class="input-group-prepend">
 					<span class="input-group-text"><i class="icon-pencil"></i></span>
 				  </div>

@@ -4,6 +4,7 @@
 		header('Location: index.php');
 		exit();
 	}
+	
 ?>
 
 <!DOCTYPE html>
@@ -24,12 +25,12 @@
 		
 		<link rel="stylesheet" href="css/bootstrap.min.css">
 		<link rel="stylesheet" href="css/fontello.css">
-		<link rel="stylesheet" href="main.css">
-		<link rel="stylesheet" type="text/css" href="jquery-ui.min.css">
 		
+		<link rel="stylesheet" type="text/css" href="jquery-ui.min.css">
+		<link rel="stylesheet" href="main.css">
 		<script src="jquery-3.5.1.min.js"></script>
 		<script src="jquery-ui.min.js"></script>
-		<script src="script/calendar.js"></script>
+		<script src="script/calendarForAddingFinancialMovements.js"></script>
     
 	</head>
 
@@ -45,7 +46,6 @@
 			</button>
 		
 			<div class="collapse navbar-collapse" id="mainmenu">
-			
 				<ul class="navbar-nav mx-auto">
 					<li class="nav-item">
 						<a class="nav-link" href="dashboard.php"><i class="icon-home"></i>Main page</a>
@@ -72,59 +72,120 @@
 		</header>
 	
 		<main>
-			<div class="financialMovementsForm">
+			<form class="financialMovementsForm" method="post" action="addExpenseProcess.php">
 			<div class="form-group">
 				<label>Type cost of expense:</label>
 				
-				<div class="input-group mb-3">
+				<div class="input-group mb-2">
 				  <div class="input-group-prepend">
 					<span class="input-group-text"><i class="icon-basket"></i></span>
 				 </div>
-				 <input name="cost" type="text" class="form-control" placeholder="Cost" aria-label="Cost">
+				 <input name="cost" type="text" class="form-control" placeholder="Cost" aria-label="Cost"
+				 <?php
+				 if(isset($_SESSION['costSetInSession'])) echo 'value="'.$_SESSION['costSetInSession'].'"';?> >
 				</div>
+				<?php
+				if(isset($_SESSION['costError'])){
+					echo '<span class="errorNotyfication">'.$_SESSION['costError'].'</span>';
+				}
+				unset($_SESSION['costError']);
+				?>
 			</div>
 			  
 			  
 			<div class="form-group">
 				<label>Type date:</label>
-				<div class="input-group mb-3">
+				<div class="input-group mb-2">
 				  <div class="input-group-prepend">
 					<span class="input-group-text"><i class="icon-calendar"></i></span>
 				  </div>
-				  <input  name="dateOfExpense" id="datePicker" type="text" class="form-control" aria-label="Date">
+				  <input  name="dateOfExpense" type="text" class="form-control" aria-label="Date"
+				  <?php
+					if(isset($_SESSION['dateOfExpenseSession'])){
+						echo 'id="datePickerSession" value="'.$_SESSION['dateOfExpenseSession'].'"';
+					}else{
+						echo 'id="datePicker"';
+					}
+					unset($_SESSION['dateOfExpenseSession']);
+					?>
+				  >
 				</div>
+				<?php
+					if(isset($_SESSION['dateError'])){
+						echo '<span class="errorNotyfication">'.$_SESSION['dateError'].'</span>';
+						unset($_SESSION['dateError']);
+					}
+				?>
 			</div>
 			<label>Choose payment method: </label>
-			<select class="form-control mb-3" id="PaymentMethod">
+			<select class="form-control mb-2" name="paymentMethod">
+				<option></option>
 				<?php 
 				foreach($_SESSION['paymentMethods']as $method){
-						echo "<option>".$method."</option>";
+					if(isset($_SESSION['paymentMethodInSession'])){
+						if($_SESSION['paymentMethodInSession']==$method) echo "<option selected>".$method."</option>";
+						else echo "<option>".$method."</option>";
+					}else{
+						echo "<option>".$method."</option>";	
+					}
 				}
+				unset($_SESSION['paymentMethodInSession']);
 				?>
 			</select>
-			
+			<div>
+			<?php
+			if(isset($_SESSION['paymentError'])){
+				echo '<span class="errorNotyfication">'.$_SESSION['paymentError'].'</span>';
+				unset($_SESSION['paymentError']);
+			}
+			?>
+			</div>
 			<label>Choose category: </label>
-			<select class="form-control mb-3" id="expenseCategory">
+			<select class="form-control mb-2" name="expenseCategory">
+				<option></option>
 				<?php 
 				foreach($_SESSION['categoriesOfExpense']as $category){
-						echo "<option>".$category."</option>";
+					if(isset($_SESSION['expenseCategoryInSession'])){
+						if($_SESSION['expenseCategoryInSession']==$category) echo "<option selected>".$category."</option>";
+						else echo "<option>".$category."</option>";
+					}else{
+						echo "<option>".$category."</option>";	
+					}
 				}
+				unset($_SESSION['expenseCategoryInSession']);
 				?>
 			</select>
-			
+			<?php
+			if(isset($_SESSION['categoryError'])){
+				echo '<span class="errorNotyfication">'.$_SESSION['categoryError'].'</span>';
+				unset($_SESSION['categoryError']);
+			}
+			?>
 			<div class="form-group">
 				<label>Comment:</label>
-				<div class="input-group mb-3">
+				<div class="input-group mb-2">
 				  <div class="input-group-prepend">
 					<span class="input-group-text"><i class="icon-pencil"></i></span>
 				  </div>
-				  <input name="comment" type="text" class="form-control" placeholder="Comment (optional)" aria-label="Comment">
+				  <input name="comment" type="text" class="form-control" placeholder="Comment (optional)" aria-label="Comment"<?php if(isset($_SESSION['commentOfExpenseInSession'])) echo 'value="'.$_SESSION['commentOfExpenseInSession'].'"';?>>
 				</div>
+				<?php
+					if(isset($_SESSION['commentError'])){
+						echo '<span class="errorNotyfication">'.$_SESSION['commentError'].'</span>';
+						unset($_SESSION['commentError']);
+					}
+				?>
 			</div>
-			  
-			  <button type="button" class="btn btn-primary btn-block mt-2">Add income</button>
+			<div class="form-group">  
+			  <button type="submit" class="btn btn-primary btn-block mt-2">Add expense</button>
+			   <?php
+					if(isset($_SESSION['expenseAdded'])){
+						echo '<span  class="successNotyfication">'.$_SESSION['expenseAdded'].'</span>';
+						unset($_SESSION['expenseAdded']);
+					}
+				?>
+			</div>
 			</form>
-			</div>
 		</main>
 		<footer>
 			financialController.com &copy; 2020
