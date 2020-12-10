@@ -57,7 +57,7 @@
 						<a class="nav-link" href="addExpense.php"><i class="icon-basket"></i>Add expense</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="#"><i class="icon-chart-pie"></i>Balance</a>
+						<a class="nav-link" href="showBalance.php"><i class="icon-chart-pie"></i>Balance</a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" href="#"><i class="icon-wrench"></i>Settings</a>

@@ -52,7 +52,7 @@
 						<a class="nav-link" href="addExpense.php"><i class="icon-basket"></i>Add expense</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="#"><i class="icon-chart-pie"></i>Balance</a>
+						<a class="nav-link" href="showBalance.php"><i class="icon-chart-pie"></i>Balance</a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" href="#"><i class="icon-wrench"></i>Settings</a>
@@ -73,7 +73,7 @@
 						<div class="col-lg-6 mt-2">
 							<a class="btn btn-primary btn-block" href="addIncome.php" role="button"><i class="icon-dollar"></i>Add income</a>
 							<a class="btn btn-primary btn-block" href="addExpense.php" role="button"><i class="icon-basket"></i>Add expense</a>
-							<a class="btn btn-primary btn-block" href="dashboard.php" role="button"><i class="icon-chart-pie"></i>Balance</a>
+							<a class="btn btn-primary btn-block" href="showBalance.php" role="button"><i class="icon-chart-pie"></i>Balance</a>
 							<a class="btn btn-primary btn-block" href="dashboard.php" role="button"><i class="icon-wrench"></i>Settings</a>
 							<a class="btn btn-primary btn-block" href="logout.php" role="button"><i class="icon-logout"></i>Logout</a>
 						</div>
