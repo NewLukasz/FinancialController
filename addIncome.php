@@ -63,7 +63,7 @@
 						<a class="nav-link" href="#"><i class="icon-wrench"></i>Settings</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="index.php"><i class="icon-logout"></i>Logout</a>
+						<a class="nav-link" href="logout.php"><i class="icon-logout"></i>Logout</a>
 					</li>
 				</ul>
 			</div>
