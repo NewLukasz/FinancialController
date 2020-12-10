@@ -129,6 +129,7 @@
 						echo "<option>".$source."</option>";	
 					}
 				}
+				unset($_SESSION['sourceOfIncomeInSession']);
 				?>
 			</select>
 			<?php
