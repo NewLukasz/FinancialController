@@ -7,6 +7,10 @@
 	}
 	
 	require_once "database.php";
+	
+	if(isset($_POST['fisrtLimitDate'])){
+		echo $_POST['fisrtLimitDate'];
+	}
 ?>
 
 <!DOCTYPE html>
@@ -59,14 +63,14 @@
 					<li class="nav-item">
 						<a class="nav-link" href="dashboard.php"><i class="icon-home"></i>Main page</a>
 					</li>
-					<li class="nav-item active">
+					<li class="nav-item ">
 						<a class="nav-link" href="addIncome.php"><i class="icon-dollar"></i>Add income</a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" href="addExpense.php"><i class="icon-basket"></i>Add expense</a>
 					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="#"><i class="icon-chart-pie"></i>Balance</a>
+					<li class="nav-item active">
+						<a class="nav-link" href="showBalance.php"><i class="icon-chart-pie"></i>Balance</a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" href="#"><i class="icon-wrench"></i>Settings</a>
@@ -84,7 +88,6 @@
 			<div class="container">
 			
 			
-			
 		<div class="d-flex justify-content-end">
 			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal">
 			  Change period of time
@@ -100,20 +103,13 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
-	  
-	  
-	  
-	  
-	  
-	  
-	  
+      
 	  
 	  
 		<form action="showBalance.php" method="post">
 			
 			  
-			  
+			<div class="modal-body">
 			<div class="form-group">
 				<label>Type date:</label>
 				<div class="input-group mb-2">
@@ -126,26 +122,18 @@
 				
 			</div>
 			
-		</form>
+		
 	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary">Save changes</button>
-      </div>
+			  </div>
+			  <div class="modal-footer">
+				<button type="button" class="btn btn-primary " data-dismiss="modal">Save changes</button>
+				<button type="submit" class="btn btn-secondary" data-dismiss="modal">Close</button>
+			  </div>
+	  </form>
     </div>
   </div>
 </div>
 			</div>
-			
 			
 			
 			
