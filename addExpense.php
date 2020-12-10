@@ -132,12 +132,14 @@
 				unset($_SESSION['paymentMethodInSession']);
 				?>
 			</select>
+			<div>
 			<?php
 			if(isset($_SESSION['paymentError'])){
 				echo '<span class="errorNotyfication">'.$_SESSION['paymentError'].'</span>';
 				unset($_SESSION['paymentError']);
 			}
 			?>
+			</div>
 			<label>Choose category: </label>
 			<select class="form-control mb-3" name="expenseCategory">
 				<option></option>
