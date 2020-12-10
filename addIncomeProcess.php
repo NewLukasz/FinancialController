@@ -35,6 +35,11 @@ if(!checkIsAValidDate($dateOfIncome)){
 
 $_SESSION['dateOfIncomeSetInSession']=$dateOfIncome;
 
+if(!$_POST['sourceOfIncome']){
+	$incomeValidation=false;
+	$_SESSION['sourceError']="Please choose category";
+}
+
 $comment=$_POST['comment'];
 if(!checkLengthOfComment($comment)){
 	$incomeValidation=false;

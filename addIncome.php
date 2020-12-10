@@ -119,6 +119,7 @@
 			</div>
 			<label>Choose source of income: </label>
 			<select class="form-control mb-3" name="sourceOfIncome">
+				<option></option>
 				<?php 
 				foreach($_SESSION['sourcesOfIncome']as $source){
 					if(isset($_SESSION['sourceOfIncomeInSession'])){
@@ -130,8 +131,13 @@
 				}
 				?>
 			</select>
-			
-			<div class="form-group">
+			<?php
+			if(isset($_SESSION['sourceError'])){
+				echo '<span class="errorNotyfication">'.$_SESSION['sourceError'].'</span>';
+				unset($_SESSION['sourceError']);
+			}
+			?>
+			<div class="form-group mt-3">
 				<label>Comment (max. 50 signs):</label>
 				<div class="input-group mb-3">
 				  <div class="input-group-prepend">
