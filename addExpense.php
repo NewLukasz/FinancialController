@@ -45,7 +45,6 @@
 			</button>
 		
 			<div class="collapse navbar-collapse" id="mainmenu">
-			
 				<ul class="navbar-nav mx-auto">
 					<li class="nav-item">
 						<a class="nav-link" href="dashboard.php"><i class="icon-home"></i>Main page</a>
