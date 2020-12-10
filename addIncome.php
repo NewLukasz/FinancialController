@@ -1,5 +1,6 @@
 <?php
 	session_start();
+	
 	if(!isset($_SESSION['loggedInUserId'])){
 		header('Location: index.php');
 		exit();
@@ -21,15 +22,15 @@
 		<link rel="preconnect" href="https://fonts.gstatic.com">
 		<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
 		
+		<link rel="stylesheet" href="main.css" type="text/css">
 		<link rel="stylesheet" href="css/bootstrap.min.css">
 		<link rel="stylesheet" href="css/fontello.css">
-		<link rel="stylesheet" href="main.css">
-		<link rel="stylesheet" type="text/css" href="jquery-ui.min.css">
+		<link rel="stylesheet" type="text/css" href="jquery-ui.min.css">	
 		
 		
 		<script src="jquery-3.5.1.min.js"></script>
 		<script src="jquery-ui.min.js"></script>
-		<script src="script/calendar.js"></script>
+		<script src="script/calendarForAddingFinancialMovements.js"></script>
     
 	</head>
 
@@ -80,7 +81,7 @@
 				  <div class="input-group-prepend">
 					<span class="input-group-text"><i class="icon-money"></i></span>
 				 </div>
-				 <input name="amount" type="text" class="form-control" placeholder="Amount" aria-label="Amount">
+				 <input name="amount" type="text" class="form-control" placeholder="Amount" aria-label="Amount" <?php if(isset($_SESSION['amountSetInSession'])) echo 'value="'.$_SESSION['amountSetInSession'].'"';?>>
 				</div>
 				<?php
 					if(isset($_SESSION['amountError'])){
@@ -97,7 +98,17 @@
 				  <div class="input-group-prepend">
 					<span class="input-group-text"><i class="icon-calendar"></i></span>
 				  </div>
-				  <input  name="dateOfIncome" id="datePicker" type="text" class="form-control" aria-label="Date">
+				  <input  name="dateOfIncome" type="text" class="form-control" aria-label="Date" 
+				  <?php
+					if(isset($_SESSION['dateOfIncomeSetInSession'])){
+						echo 'id="datePickerSession" value="'.$_SESSION['dateOfIncomeSetInSession'].'"';
+					}else{
+						echo 'id="datePicker"';
+					}
+					unset($_SESSION['dateOfIncomeSetInSession']);
+				  ?>
+				  >
+				  
 				</div>
 				<?php
 					if(isset($_SESSION['dateError'])){
@@ -107,10 +118,15 @@
 				?>
 			</div>
 			<label>Choose source of income: </label>
-			<select class="form-control mb-3" name="sourceOfIncome" >
+			<select class="form-control mb-3" name="sourceOfIncome">
 				<?php 
 				foreach($_SESSION['sourcesOfIncome']as $source){
-						echo "<option>".$source."</option>";
+					if(isset($_SESSION['sourceOfIncomeInSession'])){
+						if($_SESSION['sourceOfIncomeInSession']==$source) echo "<option selected>".$source."</option>";
+						else echo "<option>".$source."</option>";
+					}else{
+						echo "<option>".$source."</option>";	
+					}
 				}
 				?>
 			</select>
@@ -121,7 +137,7 @@
 				  <div class="input-group-prepend">
 					<span class="input-group-text"><i class="icon-pencil"></i></span>
 				  </div>
-				  <input name="comment" type="text" class="form-control" placeholder="Comment (optional)" aria-label="Comment">
+				  <input name="comment" type="text" class="form-control" placeholder="Comment (optional)" aria-label="Comment" <?php if(isset($_SESSION['commentOfIncomeInSession'])) echo 'value="'.$_SESSION['commentOfIncomeInSession'].'"';?>>
 				</div>
 				<?php
 					if(isset($_SESSION['commentError'])){
@@ -130,16 +146,15 @@
 					}
 				?>
 			</div>
-			  
+			 <div class="form-group">
 			  <button type="submit" class="btn btn-primary btn-block mt-2">Add income</button>
-			  <div class='mx-3'>
 			  <?php
 					if(isset($_SESSION['incomeAdded'])){
-						echo '<span class="successNotyfication">'.$_SESSION['incomeAdded'].'</span>';
+						echo '<span  class="successNotyfication">'.$_SESSION['incomeAdded'].'</span>';
 						unset($_SESSION['incomeAdded']);
 					}
 				?>
-				</div>
+			</div>
 		</form>
 		</main>
 		<footer>

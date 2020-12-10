@@ -8,6 +8,8 @@ if(!isset($_SESSION['loggedInUserId'])){
 	exit();
 }
 
+$_SESSION['sourceOfIncomeInSession']=$_POST['sourceOfIncome'];
+
 $incomeValidation=true;	
 
 $amount=$_POST['amount'];
@@ -22,17 +24,24 @@ if(!is_numeric($amount)){
 	$_SESSION['amountError']="Your amount is not a number";
 }
 
+$_SESSION['amountSetInSession']=$amount;
+
+
 $dateOfIncome=$_POST['dateOfIncome'];
 if(!checkIsAValidDate($dateOfIncome)){
 	$incomeValidation=false;
 	$_SESSION['dateError']="You typed wrong data. Please remeber that format is: YYYY-MM-DD";
 }
 
+$_SESSION['dateOfIncomeSetInSession']=$dateOfIncome;
+
 $comment=$_POST['comment'];
 if(!checkLengthOfComment($comment)){
 	$incomeValidation=false;
 	$_SESSION['commentError']="Your comment is too long you can insert up to 50 signs";
 }
+
+$_SESSION['commentOfIncomeInSession']=$comment;
 $userId=$_SESSION['loggedInUserId'];
 
 if($incomeValidation==true){
@@ -48,6 +57,10 @@ if($incomeValidation==true){
 	$query->bindValue(':incomeComment',$_POST['comment'],PDO::PARAM_STR);
 	$query->execute();
 	$_SESSION['incomeAdded']="Income added successfully.";
+	unset($_SESSION['commentOfIncomeInSession']);
+	unset($_SESSION['dateOfIncomeSetInSession']);
+	unset($_SESSION['amountSetInSession']);
+	unset($_SESSION['sourceOfIncomeInSession']);
 }
 
 header("Location: addIncome.php")
