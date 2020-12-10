@@ -71,7 +71,7 @@ if($expenseValidation==true){
 	$query->bindValue(':expenseComment',$_POST['comment'],PDO::PARAM_STR);
 	$query->execute();
 	
-	$_SESSION['expenseAdded']="Income added successfully.";
+	$_SESSION['expenseAdded']="Expense added successfully.";
 
 	unset($_SESSION['commentOfExpenseInSession']);
 	unset($_SESSION['dateOfExpenseSetInSession']);
@@ -80,5 +80,5 @@ if($expenseValidation==true){
 	unset($_SESSION['paymentMethodInSession']);	
 }
 
-header("Location: addIncome.php");
+header("Location: addExpense.php");
 ?>

@@ -22,7 +22,7 @@
 		<link rel="preconnect" href="https://fonts.gstatic.com">
 		<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
 		
-		<link rel="stylesheet" href="main.css" type="text/css">
+		<link rel="stylesheet" href="main.css">
 		<link rel="stylesheet" href="css/bootstrap.min.css">
 		<link rel="stylesheet" href="css/fontello.css">
 		<link rel="stylesheet" type="text/css" href="jquery-ui.min.css">	
