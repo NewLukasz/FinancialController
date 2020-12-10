@@ -1,3 +1,14 @@
+<?php
+	session_start();
+	
+	if(!isset($_SESSION['loggedInUserId'])){
+		header('Location: index.php');
+		exit();
+	}
+	
+	require_once "database.php";
+?>
+
 <!DOCTYPE html>
 <html lang="pl">
 
@@ -27,51 +38,6 @@
 		
 		<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 		
-		
-		<script type="text/javascript">
-		
-						  
-						  
-						  google.charts.load('current', {'packages':['table']});
-						  google.charts.setOnLoadCallback(drawTable);
-						  function drawTable() {
-							var data = new google.visualization.DataTable();
-							data.addColumn('string', 'Name');
-							data.addColumn('number', 'Salary');
-							data.addColumn('boolean', 'Full Time Employee');
-							data.addRows([
-							  ['Mike',  {v: 10000, f: '$10,000'}, true],
-							  ['Jim',   {v:8000,   f: '$8,000'},  false],
-							  ['Alice', {v: 12500, f: '$12,500'}, true],
-							  ['Bob',   {v: 7000,  f: '$7,000'},  true]
-							]);
-
-							var table = new google.visualization.Table(document.getElementById('table_div'));
-
-							table.draw(data, {showRowNumber: true, width: '70%', height: '70%'});
-						  }
-						 
-						 
-						 google.charts.load('current', {'packages':['table']});
-						  google.charts.setOnLoadCallback(drawIncomeTable);
-						  function drawIncomeTable() {
-							var data = new google.visualization.DataTable();
-							data.addColumn('string', 'Name');
-							data.addColumn('number', 'Salary');
-							data.addColumn('boolean', 'Full Time Employee');
-							data.addRows([
-							  ['Mike',  {v: 10000, f: '$10,000'}, true],
-							  ['Jim',   {v:8000,   f: '$8,000'},  false],
-							  ['Alice', {v: 12500, f: '$12,500'}, true],
-							  ['Bob',   {v: 7000,  f: '$7,000'},  true]
-							]);
-
-							var table = new google.visualization.Table(document.getElementById('incomeTable'));
-
-							table.draw(data, {showRowNumber: true, width: '70%', height: '70%'});
-						  }
-						  
-		</script>
 		
     
 	</head>
@@ -124,6 +90,27 @@
 						</div>
 						
 					</div>
+					<div class="col-lg-12">
+						
+						<div class="d-flex justify-content-center">
+						<?php
+						$idUser=$_SESSION['loggedInUserId'];
+						$incomesQuery=$db->query("SELECT SUM(amount) AS sumOfIncomes FROM incomes WHERE user_id='$idUser'");
+						$incomeSum=$incomesQuery->fetch();
+						$expensesQuery=$db->query("SELECT SUM(amount) AS sumOfexpenses FROM expenses WHERE user_id='$idUser'");
+						$expenseSum=$expensesQuery->fetch();
+						echo "Your summary of incomes is: {$incomeSum['sumOfIncomes']}zł, and summary of expenses: {$expenseSum['sumOfexpenses']}zł</br>";
+						$diff=$incomeSum['sumOfIncomes']-$expenseSum['sumOfexpenses'];
+						if($incomeSum['sumOfIncomes']>$expenseSum['sumOfexpenses']){
+							echo "Your total income lower by expenses is: {$diff} you plan your finanses very prudently.";
+						}else{
+							echo "Currently your balanse in on minus. Difference beetwen incomes and expenses is: {$diff}.";
+						}
+						
+						?>
+						</div>
+						
+					</div>
 					<div class="col-lg-6 mt-2">
 					</div>
 				</div>
@@ -131,24 +118,61 @@
 			<div class="container">
 				<div class="row p-4">
 					<div class="col-lg-6">
-						
-						<div class="d-flex justify-content-center" id="incomeTable"></div>
-						
+						<table style='table-layout:fixed;width:100%'>
+							<thead>
+								<tr><th colspan="5" style="text-align: center;" ><h2>Incomes</h2></th></tr>
+								<tr><th>Nr</th><th>Amount</th> <th>Source</th> <th>Date</th> <th>Comment</th></tr>
+							<thead>
+							<?php
+							$idUser=$_SESSION['loggedInUserId'];
+							$incomesQuery=$db->query("SELECT amount, income_category_assigned_to_user_id, date_of_income, income_comment FROM incomes WHERE user_id='$idUser'");
+							$incomes=$incomesQuery->fetchAll();
+							$counter=1;
+							$sourceOfIncomeNames=$_SESSION['sourcesOfIncome'];
+							foreach($incomes as $income){
+								$indexOfCategory=$income['income_category_assigned_to_user_id'];
+								$sourceOfIncomeName=$sourceOfIncomeNames[$indexOfCategory];
+								echo "<tr><td>{$counter}</td><td>{$income['amount']}<td>{$sourceOfIncomeName}</td> <td>{$income['date_of_income']}</td> <td>{$income['income_comment']}</td>";
+								$counter++;
+							}
+							?>
+						</table>
 					</div>
 					<div class="col-lg-6 mt-2">
-					
-						<div class="d-flex justyfi-content-center" id="table_div"></div>
-					
+					<table style='table-layout:fixed;width:100%'>
+							<thead>
+								<tr><th colspan="6" style="text-align: center;" ><h2>Expenses</h2></th></tr>
+								<tr><th >Nr</th><th>Amount</th> <th>Category</th> <th>PaymentMethod</th> <th>Date</th> <th>Comment</th></tr>
+							<thead>
+							<?php
+							$idUser=$_SESSION['loggedInUserId'];
+							$expenseQuery=$db->query("SELECT amount, expense_category_assigned_to_user_id, payment_method_assigned_to_user_id, date_of_expense, expense_comment FROM expenses WHERE user_id='$idUser'");
+							$expenses=$expenseQuery->fetchAll();
+							$counter=1;
+							$categoryOfExpenseNames=$_SESSION['categoriesOfExpense'];
+							$paymentMethodNames=$_SESSION['paymentMethods'];
+							foreach($expenses as $expense){
+								$indexOfCategory=$expense['expense_category_assigned_to_user_id'];
+								$categoryOfExpenseName=$categoryOfExpenseNames[$indexOfCategory];
+								$indexOfPaymentMethod=$expense['payment_method_assigned_to_user_id'];
+								$paymentMethodName=$paymentMethodNames[$indexOfPaymentMethod];
+								echo "<tr><td>{$counter}</td><td>{$expense['amount']}<td>{$categoryOfExpenseName}</td><td>{$paymentMethodName}</td> <td>{$expense['date_of_expense']}</td> <td>{$expense['expense_comment']}</td>";
+								$counter++;
+							}
+							?>
+							
+						</table>
+						
 					</div>
 				</div>
 			</div>
 			<div class="container">
 				<div class="row p-4">
 					<div class="col-lg-6">
-						Tutaj pierwszy wykres
+						First chart will be here...
 					</div>
 					<div class="col-lg-6">
-						W tym miejscy drugi wykres
+						Second chart will be here..
 					</div>
 				</div>
 			</div>
