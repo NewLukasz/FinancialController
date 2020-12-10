@@ -72,10 +72,12 @@ footer
 	color: green;
 }
 
-th, td
+.tableWithFinancialMovemnts
 {
 	font-size: 10px;
 	border: 1px solid black;
 	padding: 5px;
 	width: 100%;
 }
+
+.ui-datepicker { position: relative; z-index: 10000 !important; }

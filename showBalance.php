@@ -82,6 +82,75 @@
 	
 		<main>
 			<div class="container">
+			
+			
+			
+		<div class="d-flex justify-content-end">
+			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal">
+			  Change period of time
+			</button>
+
+<!-- Modal -->
+<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="change period of time" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Choose period of time</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+		<form action="showBalance.php" method="post">
+			
+			  
+			  
+			<div class="form-group">
+				<label>Type date:</label>
+				<div class="input-group mb-2">
+				  <div class="input-group-prepend">
+					<span class="input-group-text"><i class="icon-calendar"></i></span>
+				  </div>
+				  <input  name="fisrtLimitDate" id="datePicker" type="text" class="form-control" aria-label="Date">
+				  
+				</div>
+				
+			</div>
+			
+		</form>
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+			</div>
+			
+			
+			
+			
+			
+			
 				<div class="row p-4">
 					<div class="col-lg-12">
 						
@@ -117,8 +186,8 @@
 			</div>
 			<div class="container">
 				<div class="row p-4">
-					<div class="col-lg-6">
-						<table style='table-layout:fixed;width:100%'>
+					<div class="col-lg-6 mt-2">
+						<table class="table tableWithFinancialMovemnts" style='table-layout:fixed;width:100%'>
 							<thead>
 								<tr><th colspan="5" style="text-align: center;" ><h2>Incomes</h2></th></tr>
 								<tr><th>Nr</th><th>Amount</th> <th>Source</th> <th>Date</th> <th>Comment</th></tr>
@@ -138,8 +207,8 @@
 							?>
 						</table>
 					</div>
-					<div class="col-lg-6 mt-2">
-					<table style='table-layout:fixed;width:100%'>
+					<div class="col-lg-6 mt-2 ">
+					<table class="table tableWithFinancialMovemnts" style='table-layout:fixed;width:100%'>
 							<thead>
 								<tr><th colspan="6" style="text-align: center;" ><h2>Expenses</h2></th></tr>
 								<tr><th >Nr</th><th>Amount</th> <th>Category</th> <th>PaymentMethod</th> <th>Date</th> <th>Comment</th></tr>
@@ -160,7 +229,6 @@
 								$counter++;
 							}
 							?>
-							
 						</table>
 						
 					</div>
