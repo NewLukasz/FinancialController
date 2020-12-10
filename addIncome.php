@@ -76,7 +76,7 @@
 			<div class="form-group">
 				<label>Type amount of income:</label>
 				
-				<div class="input-group mb-3">
+				<div class="input-group mb-2">
 				  <div class="input-group-prepend">
 					<span class="input-group-text"><i class="icon-money"></i></span>
 				 </div>
@@ -93,7 +93,7 @@
 			  
 			<div class="form-group">
 				<label>Type date:</label>
-				<div class="input-group mb-3">
+				<div class="input-group mb-2">
 				  <div class="input-group-prepend">
 					<span class="input-group-text"><i class="icon-calendar"></i></span>
 				  </div>
@@ -117,7 +117,7 @@
 				?>
 			</div>
 			<label>Choose source of income: </label>
-			<select class="form-control mb-3" name="sourceOfIncome">
+			<select class="form-control mb-2" name="sourceOfIncome">
 				<option></option>
 				<?php 
 				foreach($_SESSION['sourcesOfIncome']as $source){
@@ -139,7 +139,7 @@
 			?>
 			<div class="form-group mt-3">
 				<label>Comment (max. 50 signs):</label>
-				<div class="input-group mb-3">
+				<div class="input-group mb-2">
 				  <div class="input-group-prepend">
 					<span class="input-group-text"><i class="icon-pencil"></i></span>
 				  </div>

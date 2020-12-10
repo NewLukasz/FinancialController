@@ -29,12 +29,11 @@ if(!is_numeric($cost)){
 $_SESSION['costSetInSession']=$cost;
 
 $dateOfExpense=$_POST['dateOfExpense'];
+$_SESSION['dateOfExpenseSession']=$dateOfExpense;
 if(!checkIsAValidDate($dateOfExpense)){
 	$expenseValidation=false;
 	$_SESSION['dateError']="You typed wrong data. Please remeber that format is: YYYY-MM-DD";
 }
-
-$_SESSION['dateOfExpenseSetInSession']=$dateOfExpense;
 
 if(!$_POST['expenseCategory']){
 	$expenseValidation=false;
@@ -74,11 +73,10 @@ if($expenseValidation==true){
 	$_SESSION['expenseAdded']="Expense added successfully.";
 
 	unset($_SESSION['commentOfExpenseInSession']);
-	unset($_SESSION['dateOfExpenseSetInSession']);
+	unset($_SESSION['dateOfExpenseSession']);
 	unset($_SESSION['costSetInSession']);
 	unset($_SESSION['expenseCategoryInSession']);
 	unset($_SESSION['paymentMethodInSession']);	
 }
-
 header("Location: addExpense.php");
 ?>
