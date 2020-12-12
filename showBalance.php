@@ -5,12 +5,7 @@
 		header('Location: index.php');
 		exit();
 	}
-	
 	require_once "database.php";
-	
-	if(isset($_POST['fisrtLimitDate'])){
-		echo $_POST['fisrtLimitDate'];
-	}
 ?>
 
 <!DOCTYPE html>
@@ -37,11 +32,63 @@
 		<script src="jquery-3.5.1.min.js"></script>
 		<script src="jquery-ui.min.js"></script>
 		<script src="script/calendarForAddingFinancialMovements.js"></script>
-		
-		
-		
 		<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 		
+		<script type="text/javascript">
+		  google.charts.load('current', {'packages':['table']});
+		  google.charts.setOnLoadCallback(drawIncomeCategoryTable);
+
+		  function drawIncomeCategoryTable() {
+			var data = new google.visualization.DataTable();
+			data.addColumn('string', 'Category');
+			data.addColumn('number', 'Amount');
+			data.addRows([
+			<?php
+			foreach($_SESSION['sourcesOfIncome'] as $source){
+				$idOfIncomeCategory=array_search($source,$_SESSION['sourcesOfIncome']);
+				$queryForAmount=$db->query("SELECT income_category_assigned_to_user_id, SUM(amount) AS sumOfAmount FROM incomes WHERE income_category_assigned_to_user_id='$idOfIncomeCategory'");
+				$amount=$queryForAmount->fetch();
+				$currectAmount=$amount['sumOfAmount'];
+				if($amount['sumOfAmount']){
+					echo "['$source',$currectAmount],";
+				}
+			}
+			
+			?>
+			]);
+			var table = new google.visualization.Table(document.getElementById('incomesCategoryTable'));
+			table.draw(data, {showRowNumber: true, width: '350px'});
+			
+		  }
+		  
+		  
+		  
+		  google.charts.load('current', {'packages':['table']});
+		  google.charts.setOnLoadCallback(drawExpenseCategoryTable);
+
+		  function drawExpenseCategoryTable() {
+			var data = new google.visualization.DataTable();
+			data.addColumn('string', 'Category');
+			data.addColumn('number', 'Costs');
+			data.addRows([
+			<?php
+			foreach($_SESSION['categoriesOfExpense'] as $category){
+				$idOfExpenseCategory=array_search($category,$_SESSION['categoriesOfExpense']);
+				$queryForCosts=$db->query("SELECT expense_category_assigned_to_user_id, SUM(amount) AS sumOfCosts FROM expenses WHERE expense_category_assigned_to_user_id='$idOfExpenseCategory'");
+				$cost=$queryForCosts->fetch();
+				$currectCost=$cost['sumOfCosts'];
+				if($cost['sumOfCosts']){
+					echo "['$category',$currectCost],";
+				}
+			}
+			
+			?>
+			]);
+			var table = new google.visualization.Table(document.getElementById('expensesCategoryTable'));
+			table.draw(data, {showRowNumber: true, width: '350px'});
+			
+		  }
+		</script>
 		
     
 	</head>
@@ -163,12 +210,29 @@
 						}else{
 							echo "Currently your balanse in on minus. Difference beetwen incomes and expenses is: {$diff}.";
 						}
-						
 						?>
 						</div>
 						
 					</div>
+					<div class="col-lg-12">
+						
+						<div class="d-flex justify-content-center mt-3">
+						<h2>Balance of incomes and expenses in case of category below:</h2>
+						</div>
+						
+					</div>
 					<div class="col-lg-6 mt-2">
+					</div>
+				</div>
+			</div>
+			
+			<div class="container">
+				<div class="row p-4">
+					<div class="col-lg-6 d-flex justify-content-center">
+						<div id="incomesCategoryTable"></div>
+					</div>
+					<div class="col-lg-6 d-flex justify-content-center">
+						<div id="expensesCategoryTable"></div>
 					</div>
 				</div>
 			</div>
@@ -180,6 +244,7 @@
 								<tr><th colspan="5" style="text-align: center;" ><h2>Incomes</h2></th></tr>
 								<tr><th>Nr</th><th>Amount</th> <th>Source</th> <th>Date</th> <th>Comment</th></tr>
 							<thead>
+							
 							<?php
 							$idUser=$_SESSION['loggedInUserId'];
 							$incomesQuery=$db->query("SELECT amount, income_category_assigned_to_user_id, date_of_income, income_comment FROM incomes WHERE user_id='$idUser'");
