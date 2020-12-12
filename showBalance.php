@@ -6,6 +6,12 @@
 		exit();
 	}
 	require_once "database.php";
+	
+	$firstLimitDate=date("Y-m-1");
+	echo $firstLimitDate;
+	$d= new DateTime($firstLimitDate);
+	$secondLimitDate=$d->format('Y-m-t');
+	echo $secondLimitDate;
 ?>
 
 <!DOCTYPE html>
@@ -46,7 +52,7 @@
 			<?php
 			foreach($_SESSION['sourcesOfIncome'] as $source){
 				$idOfIncomeCategory=array_search($source,$_SESSION['sourcesOfIncome']);
-				$queryForAmount=$db->query("SELECT income_category_assigned_to_user_id, SUM(amount) AS sumOfAmount FROM incomes WHERE income_category_assigned_to_user_id='$idOfIncomeCategory'");
+				$queryForAmount=$db->query("SELECT income_category_assigned_to_user_id, SUM(amount) AS sumOfAmount FROM incomes WHERE income_category_assigned_to_user_id='$idOfIncomeCategory' AND date_of_income BETWEEN '$firstLimitDate' AND '$secondLimitDate'");
 				$amount=$queryForAmount->fetch();
 				$currectAmount=$amount['sumOfAmount'];
 				if($amount['sumOfAmount']){
@@ -74,7 +80,7 @@
 			<?php
 			foreach($_SESSION['categoriesOfExpense'] as $category){
 				$idOfExpenseCategory=array_search($category,$_SESSION['categoriesOfExpense']);
-				$queryForCosts=$db->query("SELECT expense_category_assigned_to_user_id, SUM(amount) AS sumOfCosts FROM expenses WHERE expense_category_assigned_to_user_id='$idOfExpenseCategory'");
+				$queryForCosts=$db->query("SELECT expense_category_assigned_to_user_id, SUM(amount) AS sumOfCosts FROM expenses WHERE expense_category_assigned_to_user_id='$idOfExpenseCategory'AND date_of_expense BETWEEN '$firstLimitDate' AND '$secondLimitDate'");
 				$cost=$queryForCosts->fetch();
 				$currectCost=$cost['sumOfCosts'];
 				if($cost['sumOfCosts']){
@@ -97,7 +103,7 @@
 		  <?php
 			foreach($_SESSION['sourcesOfIncome'] as $source){
 				$idOfIncomeCategory=array_search($source,$_SESSION['sourcesOfIncome']);
-				$queryForAmount=$db->query("SELECT income_category_assigned_to_user_id, SUM(amount) AS sumOfAmount FROM incomes WHERE income_category_assigned_to_user_id='$idOfIncomeCategory'");
+				$queryForAmount=$db->query("SELECT income_category_assigned_to_user_id, SUM(amount) AS sumOfAmount FROM incomes WHERE income_category_assigned_to_user_id='$idOfIncomeCategory' AND date_of_income BETWEEN '$firstLimitDate' AND '$secondLimitDate'");
 				$amount=$queryForAmount->fetch();
 				$currectAmount=$amount['sumOfAmount'];
 				if($amount['sumOfAmount']){
@@ -128,7 +134,7 @@
 		 <?php
 			foreach($_SESSION['categoriesOfExpense'] as $category){
 				$idOfExpenseCategory=array_search($category,$_SESSION['categoriesOfExpense']);
-				$queryForCosts=$db->query("SELECT expense_category_assigned_to_user_id, SUM(amount) AS sumOfCosts FROM expenses WHERE expense_category_assigned_to_user_id='$idOfExpenseCategory'");
+				$queryForCosts=$db->query("SELECT expense_category_assigned_to_user_id, SUM(amount) AS sumOfCosts FROM expenses WHERE expense_category_assigned_to_user_id='$idOfExpenseCategory' AND date_of_expense BETWEEN '$firstLimitDate' AND '$secondLimitDate'");
 				$cost=$queryForCosts->fetch();
 				$currectCost=$cost['sumOfCosts'];
 				if($cost['sumOfCosts']){
@@ -261,9 +267,9 @@
 						<div class="d-flex justify-content-center">
 						<?php
 						$idUser=$_SESSION['loggedInUserId'];
-						$incomesQuery=$db->query("SELECT SUM(amount) AS sumOfIncomes FROM incomes WHERE user_id='$idUser'");
+						$incomesQuery=$db->query("SELECT SUM(amount) AS sumOfIncomes FROM incomes WHERE user_id='$idUser' AND date_of_income BETWEEN '$firstLimitDate' AND '$secondLimitDate'");
 						$incomeSum=$incomesQuery->fetch();
-						$expensesQuery=$db->query("SELECT SUM(amount) AS sumOfexpenses FROM expenses WHERE user_id='$idUser'");
+						$expensesQuery=$db->query("SELECT SUM(amount) AS sumOfexpenses FROM expenses WHERE user_id='$idUser'AND date_of_expense BETWEEN '$firstLimitDate' AND '$secondLimitDate'");
 						$expenseSum=$expensesQuery->fetch();
 						echo "Your summary of incomes is: {$incomeSum['sumOfIncomes']}zł, and summary of expenses: {$expenseSum['sumOfexpenses']}zł</br>";
 						$diff=$incomeSum['sumOfIncomes']-$expenseSum['sumOfexpenses'];
@@ -321,7 +327,7 @@
 							
 							<?php
 							$idUser=$_SESSION['loggedInUserId'];
-							$incomesQuery=$db->query("SELECT amount, income_category_assigned_to_user_id, date_of_income, income_comment FROM incomes WHERE user_id='$idUser'");
+							$incomesQuery=$db->query("SELECT amount, income_category_assigned_to_user_id, date_of_income, income_comment FROM incomes WHERE user_id='$idUser'AND date_of_income BETWEEN '$firstLimitDate' AND '$secondLimitDate'");
 							$incomes=$incomesQuery->fetchAll();
 							$counter=1;
 							$sourceOfIncomeNames=$_SESSION['sourcesOfIncome'];
@@ -342,7 +348,7 @@
 							<thead>
 							<?php
 							$idUser=$_SESSION['loggedInUserId'];
-							$expenseQuery=$db->query("SELECT amount, expense_category_assigned_to_user_id, payment_method_assigned_to_user_id, date_of_expense, expense_comment FROM expenses WHERE user_id='$idUser'");
+							$expenseQuery=$db->query("SELECT amount, expense_category_assigned_to_user_id, payment_method_assigned_to_user_id, date_of_expense, expense_comment FROM expenses WHERE user_id='$idUser'AND date_of_expense BETWEEN '$firstLimitDate' AND '$secondLimitDate'");
 							$expenses=$expenseQuery->fetchAll();
 							$counter=1;
 							$categoryOfExpenseNames=$_SESSION['categoriesOfExpense'];
