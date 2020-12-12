@@ -81,13 +81,75 @@
 					echo "['$category',$currectCost],";
 				}
 			}
-			
 			?>
 			]);
 			var table = new google.visualization.Table(document.getElementById('expensesCategoryTable'));
 			table.draw(data, {showRowNumber: true, width: '350px'});
-			
 		  }
+		  
+		google.charts.load('current', {'packages':['corechart']});
+		google.charts.setOnLoadCallback(drawIncomeCategoryChart);
+		
+		function drawIncomeCategoryChart() {
+
+        var data = google.visualization.arrayToDataTable([
+          ['Category', 'Income'],
+		  <?php
+			foreach($_SESSION['sourcesOfIncome'] as $source){
+				$idOfIncomeCategory=array_search($source,$_SESSION['sourcesOfIncome']);
+				$queryForAmount=$db->query("SELECT income_category_assigned_to_user_id, SUM(amount) AS sumOfAmount FROM incomes WHERE income_category_assigned_to_user_id='$idOfIncomeCategory'");
+				$amount=$queryForAmount->fetch();
+				$currectAmount=$amount['sumOfAmount'];
+				if($amount['sumOfAmount']){
+					echo "['$source',$currectAmount],";
+				}
+			}
+			
+			?>
+        ]);
+
+        var options = {
+          title: 'My incomes'
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('IncomesPiechart'));
+
+        chart.draw(data, options);
+		}
+		
+		
+		
+		google.charts.load('current', {'packages':['corechart']});
+		google.charts.setOnLoadCallback(drawExpenseCategoryChart);
+		
+		function drawExpenseCategoryChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Category', 'Expense'],
+		 <?php
+			foreach($_SESSION['categoriesOfExpense'] as $category){
+				$idOfExpenseCategory=array_search($category,$_SESSION['categoriesOfExpense']);
+				$queryForCosts=$db->query("SELECT expense_category_assigned_to_user_id, SUM(amount) AS sumOfCosts FROM expenses WHERE expense_category_assigned_to_user_id='$idOfExpenseCategory'");
+				$cost=$queryForCosts->fetch();
+				$currectCost=$cost['sumOfCosts'];
+				if($cost['sumOfCosts']){
+					echo "['$category',$currectCost],";
+				}
+			}
+			?>
+        ]);
+
+        var options = {
+          title: 'My expenses'
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('ExpensePiechart'));
+
+        chart.draw(data, options);
+		}
+		
+		
+		
+		  
 		</script>
 		
     
@@ -221,22 +283,34 @@
 						</div>
 						
 					</div>
-					<div class="col-lg-6 mt-2">
-					</div>
+					
 				</div>
 			</div>
 			
-			<div class="container">
-				<div class="row p-4">
-					<div class="col-lg-6 d-flex justify-content-center">
+			<div class="container" style="border: 1px solid black;">
+				<h3 class="d-flex justify-content-center mt-3">Incomes balance</h3>
+				<div class="row p-2">
+					<div class="col-lg-6 d-flex justify-content-center mt-3">
 						<div id="incomesCategoryTable"></div>
 					</div>
 					<div class="col-lg-6 d-flex justify-content-center">
-						<div id="expensesCategoryTable"></div>
+						<div id="IncomesPiechart" style="width: 500px; height: 300px;"></div>
 					</div>
 				</div>
 			</div>
-			<div class="container">
+			<div class="container mt-3" style="border: 1px solid black;">
+				<h3 class="d-flex justify-content-center mt-3">Expenses balance</h3>
+				<div class="row p-2">
+					<div class="col-lg-6 d-flex justify-content-center">
+						<div id="expensesCategoryTable"></div>
+					</div>
+					<div class="col-lg-6 d-flex justify-content-center">
+						<div id="ExpensePiechart" style="width: 500px; height: 300px;"></div>
+					</div>
+				</div>
+			</div>
+			<div class="container mt-5" style="border: 1px solid black;">
+				<h3 class="d-flex justify-content-center mt-3">Below detailed balances</h3>
 				<div class="row p-4">
 					<div class="col-lg-6 mt-2">
 						<table class="table tableWithFinancialMovemnts" style='table-layout:fixed;width:100%'>
@@ -283,17 +357,6 @@
 							}
 							?>
 						</table>
-						
-					</div>
-				</div>
-			</div>
-			<div class="container">
-				<div class="row p-4">
-					<div class="col-lg-6">
-						First chart will be here...
-					</div>
-					<div class="col-lg-6">
-						Second chart will be here..
 					</div>
 				</div>
 			</div>
