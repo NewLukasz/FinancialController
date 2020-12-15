@@ -6,20 +6,12 @@
 		exit();
 	}
 	require_once "database.php";
-	
+
 	$firstLimitDate=date("Y-m-1");
 	$d= new DateTime($firstLimitDate);
 	$secondLimitDate=$d->format('Y-m-t');
 	
 	$rangeOfBalance="current month";
-	
-	if(isset($_POST['fisrtLimitDate'])){
-		$fisrtLimitDate=$_POST['fisrtLimitDate'];
-		$rangeOfBalance=$firstLimitDate." to ". $secondLimitDate;
-	}
-	if(isset($_POST['secondLimitDate'])){
-		$secondLimitDate=$_POST['secondLimitDate'];
-	}
 	
 	if(isset($_POST['currentMonthBalance'])){
 		$firstLimitDate=date("Y-m-1");
@@ -33,6 +25,28 @@
 		$d=new DateTime($firstLimitDate);
 		$secondLimitDate=$d->format('Y-m-t');
 		$rangeOfBalance="previous month";
+	}
+	
+	if(isset($_POST['fisrtLimitDate'])){
+		require_once "functions.php";
+		if(checkIsAValidDate($_POST['fisrtLimitDate'])){
+			$fisrtLimitDate=$_POST['fisrtLimitDate'];
+			$rangeOfBalance=$firstLimitDate." to ". $secondLimitDate;
+		}else{
+			header("Location: showBalanceWrongCustomBalancesDatas.php");
+		}
+	}
+	
+	if(isset($_POST['secondLimitDate'])){
+		if(checkIsAValidDate($_POST['secondLimitDate'])){
+			$secondLimitDate=$_POST['secondLimitDate'];
+		}else{
+			header("Location: showBalanceWrongCustomBalancesDatas.php");
+		}
+	}
+	
+	if($firstLimitDate>$secondLimitDate){
+		header("Location: showBalanceWrongCustomBalancesDatas.php");
 	}
 ?>
 
@@ -254,14 +268,14 @@
 											  <div class="input-group-prepend">
 													<span class="input-group-text"><i class="icon-calendar"></i></span>
 											  </div>
-											  <input  name="fisrtLimitDate" id="datePickerFirstLimit" type="text" class="form-control" aria-label="Date">
+											  <input autocomplete="off"  name="fisrtLimitDate" id="datePickerFirstLimit" type="text" class="form-control" aria-label="Date">
 											</div>
 											<label>Type second limit date:</label>
 											<div class="input-group mb-3">
 											  <div class="input-group-prepend">
 												<span class="input-group-text"><i class="icon-calendar"></i></span>
 											  </div>
-											  <input  name="secondLimitDate" id="datePickerSecondLimit" type="text" class="form-control" aria-label="Date">
+											  <input autocomplete="off"  name="secondLimitDate" id="datePickerSecondLimit" type="text" class="form-control" aria-label="Date">
 											</div>
 											<div class="input-group mb-2">
 													 <button type="submit" class="btn btn-primary btn-block mt-2">Save changes</button>
