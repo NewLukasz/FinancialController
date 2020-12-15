@@ -11,12 +11,22 @@
 	$d= new DateTime($firstLimitDate);
 	$secondLimitDate=$d->format('Y-m-t');
 	if(isset($_POST['fisrtLimitDate'])){
-		echo $_POST['fisrtLimitDate']."<br/>";
+		//echo $_POST['fisrtLimitDate']."<br/>";
 		$fisrtLimitDate=$_POST['fisrtLimitDate'];
 	}
 	if(isset($_POST['secondLimitDate'])){
-		echo $_POST['secondLimitDate'];
+		//echo $_POST['secondLimitDate'];
 		$secondLimitDate=$_POST['secondLimitDate'];
+	}
+	
+	if(isset($_POST['currentMonthBalance'])){
+		//echo "SWITCHED ON CURENT BALANCE<br/>";
+		//echo $_POST['currentMonthBalance'];
+	}
+	
+	if(isset($_POST['previousMonthBalance'])){
+		//echo "SWITCHED ON PREVIOUS BALANCE<br/>";
+		//echo $_POST['previousMonthBalance'];
 	}
 ?>
 
@@ -206,14 +216,16 @@
 			<div class="container mt-2 ">
 				<div class="row p-2">
 					<div class="col-lg-4">
-						<button type="button" class="btn btn-primary">
-						  Current month balance
-						</button>
+						<form action="showBalance.php" method="post">
+							<input type="hidden" name="currentMonthBalance" value="currentMonthBalance">
+							<button type="submit" class="btn btn-primary">Current month balance</button>
+						</form>
 					</div>
 					<div class="col-lg-4 d-flex justify-content-center">
-						<button type="button" class="btn btn-primary ">
-						  Previous month balance
-						</button>
+						<form action="showBalance.php" method="post">
+							<input type="hidden" name="previousMonthBalance" value="previousMonthBalance">
+							<button type="submit" class="btn btn-primary">Previous month balance</button>
+						</form>
 					</div>
 					<div class="col-lg-4  d-flex justify-content-end">
 						<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal">

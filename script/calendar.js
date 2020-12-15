@@ -20,6 +20,14 @@ var date=new Date();
 	$("#datePickerSession").datepicker({
 		dateFormat: "yy-mm-dd"
 	});
+	
+	$("#datePickerFirstLimit").datepicker({
+		dateFormat: "yy-mm-dd"
+	});
+	
+	$("#datePickerSecondLimit").datepicker({
+		dateFormat: "yy-mm-dd"
+	});
 }
 		
 	
