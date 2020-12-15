@@ -10,12 +10,14 @@
 	$firstLimitDate=date("Y-m-1");
 	$d= new DateTime($firstLimitDate);
 	$secondLimitDate=$d->format('Y-m-t');
+	
+	$rangeOfBalance="current month";
+	
 	if(isset($_POST['fisrtLimitDate'])){
-		//echo $_POST['fisrtLimitDate']."<br/>";
 		$fisrtLimitDate=$_POST['fisrtLimitDate'];
+		$rangeOfBalance=$firstLimitDate." to ". $secondLimitDate;
 	}
 	if(isset($_POST['secondLimitDate'])){
-		//echo $_POST['secondLimitDate'];
 		$secondLimitDate=$_POST['secondLimitDate'];
 	}
 	
@@ -23,12 +25,14 @@
 		$firstLimitDate=date("Y-m-1");
 		$d= new DateTime($firstLimitDate);
 		$secondLimitDate=$d->format('Y-m-t');
+		$rangeOfBalance="current month";
 	}
 	
 	if(isset($_POST['previousMonthBalance'])){
 		$firstLimitDate= date("Y-m-1",strtotime("-1 month"));
 		$d=new DateTime($firstLimitDate);
 		$secondLimitDate=$d->format('Y-m-t');
+		$rangeOfBalance="previous month";
 	}
 ?>
 
@@ -276,7 +280,7 @@
 					<div class="col-lg-12">
 						
 						<div class="d-flex justify-content-center">
-						<h1>Balance from current month</h1>
+						<h1>Balance from <?php echo $rangeOfBalance; ?></h1>
 						</div>
 						
 					</div>
