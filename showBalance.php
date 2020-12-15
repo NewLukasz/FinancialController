@@ -178,6 +178,69 @@
         chart.draw(data, options);
 		}
 		
+		google.charts.load('current', {'packages':['table']});
+		google.charts.setOnLoadCallback(drawDetailedIncomeTable);
+
+		function drawDetailedIncomeTable() {
+		var data = new google.visualization.DataTable();
+		data.addColumn('number', 'Amount');
+		data.addColumn('string', 'Source');
+		data.addColumn('string', 'Date');
+		data.addColumn('string', 'Comment');
+		data.addRows([
+		<?php
+			$idUser=$_SESSION['loggedInUserId'];
+			$incomesQuery=$db->query("SELECT amount, income_category_assigned_to_user_id, date_of_income, income_comment FROM incomes WHERE user_id='$idUser'AND date_of_income BETWEEN '$firstLimitDate' AND '$secondLimitDate'");
+			$incomes=$incomesQuery->fetchAll();
+			$sourceOfIncomeNames=$_SESSION['sourcesOfIncome'];
+			foreach($incomes as $income){
+				$indexOfCategory=$income['income_category_assigned_to_user_id'];
+				$sourceOfIncomeName=$sourceOfIncomeNames[$indexOfCategory];
+				$incomeTemporary=$income['amount'];
+				$dateTemporary=$income['date_of_income'];
+				$incomeCommentTemporary=$income['income_comment'];
+				echo "[$incomeTemporary,'$sourceOfIncomeName','$dateTemporary','$incomeCommentTemporary'],";
+			}
+		?>
+		]);
+		var table = new google.visualization.Table(document.getElementById('detailedIncomeTable'));
+		table.draw(data, {showRowNumber: true, width: '100%', height: '100%'});
+		}
+		
+		google.charts.load('current', {'packages':['table']});
+		google.charts.setOnLoadCallback(drawDetailedExpenseTable);
+
+		function drawDetailedExpenseTable() {
+		var data = new google.visualization.DataTable();
+		data.addColumn('number', 'Amount');
+		data.addColumn('string', 'Source');
+		data.addColumn('string', 'PaymentMethod');
+		data.addColumn('string', 'Date');
+		data.addColumn('string', 'Comment');
+		data.addRows([		
+		<?php
+							$idUser=$_SESSION['loggedInUserId'];
+							$expenseQuery=$db->query("SELECT amount, expense_category_assigned_to_user_id, payment_method_assigned_to_user_id, date_of_expense, expense_comment FROM expenses WHERE user_id='$idUser'AND date_of_expense BETWEEN '$firstLimitDate' AND '$secondLimitDate'");
+							$expenses=$expenseQuery->fetchAll();
+							$categoryOfExpenseNames=$_SESSION['categoriesOfExpense'];
+							$paymentMethodNames=$_SESSION['paymentMethods'];
+							foreach($expenses as $expense){
+								$indexOfCategory=$expense['expense_category_assigned_to_user_id'];
+								$categoryOfExpenseName=$categoryOfExpenseNames[$indexOfCategory];
+								$indexOfPaymentMethod=$expense['payment_method_assigned_to_user_id'];
+								$paymentMethodName=$paymentMethodNames[$indexOfPaymentMethod];
+								$amountTemporary=$expense['amount'];
+								$dateTemporary=$expense['date_of_expense'];
+								$commentTemporary=$expense['expense_comment'];
+								echo "[$amountTemporary,'$categoryOfExpenseName','$paymentMethodName','$dateTemporary','$commentTemporary'],";
+							}
+							?>
+		]);
+		var table = new google.visualization.Table(document.getElementById('detailedExpenseTable'));
+		table.draw(data, {showRowNumber: true, width: '100%', height: '100%'});
+		}
+		
+		
 		</script>
 		
     
@@ -344,50 +407,10 @@
 				<h3 class="d-flex justify-content-center mt-3">Below detailed balances</h3>
 				<div class="row p-4">
 					<div class="col-lg-6 mt-2">
-						<table class="table tableWithFinancialMovemnts" style='table-layout:fixed;width:100%'>
-							<thead>
-								<tr><th colspan="5" style="text-align: center;" ><h2>Incomes</h2></th></tr>
-								<tr><th>Nr</th><th>Amount</th> <th>Source</th> <th>Date</th> <th>Comment</th></tr>
-							<thead>
-							
-							<?php
-							$idUser=$_SESSION['loggedInUserId'];
-							$incomesQuery=$db->query("SELECT amount, income_category_assigned_to_user_id, date_of_income, income_comment FROM incomes WHERE user_id='$idUser'AND date_of_income BETWEEN '$firstLimitDate' AND '$secondLimitDate'");
-							$incomes=$incomesQuery->fetchAll();
-							$counter=1;
-							$sourceOfIncomeNames=$_SESSION['sourcesOfIncome'];
-							foreach($incomes as $income){
-								$indexOfCategory=$income['income_category_assigned_to_user_id'];
-								$sourceOfIncomeName=$sourceOfIncomeNames[$indexOfCategory];
-								echo "<tr><td>{$counter}</td><td>{$income['amount']}<td>{$sourceOfIncomeName}</td> <td>{$income['date_of_income']}</td> <td>{$income['income_comment']}</td>";
-								$counter++;
-							}
-							?>
-						</table>
+						<div id="detailedIncomeTable"></div>
 					</div>
 					<div class="col-lg-6 mt-2 ">
-					<table class="table tableWithFinancialMovemnts" style='table-layout:fixed;width:100%'>
-							<thead>
-								<tr><th colspan="6" style="text-align: center;" ><h2>Expenses</h2></th></tr>
-								<tr><th >Nr</th><th>Amount</th> <th>Category</th> <th>PaymentMethod</th> <th>Date</th> <th>Comment</th></tr>
-							<thead>
-							<?php
-							$idUser=$_SESSION['loggedInUserId'];
-							$expenseQuery=$db->query("SELECT amount, expense_category_assigned_to_user_id, payment_method_assigned_to_user_id, date_of_expense, expense_comment FROM expenses WHERE user_id='$idUser'AND date_of_expense BETWEEN '$firstLimitDate' AND '$secondLimitDate'");
-							$expenses=$expenseQuery->fetchAll();
-							$counter=1;
-							$categoryOfExpenseNames=$_SESSION['categoriesOfExpense'];
-							$paymentMethodNames=$_SESSION['paymentMethods'];
-							foreach($expenses as $expense){
-								$indexOfCategory=$expense['expense_category_assigned_to_user_id'];
-								$categoryOfExpenseName=$categoryOfExpenseNames[$indexOfCategory];
-								$indexOfPaymentMethod=$expense['payment_method_assigned_to_user_id'];
-								$paymentMethodName=$paymentMethodNames[$indexOfPaymentMethod];
-								echo "<tr><td>{$counter}</td><td>{$expense['amount']}<td>{$categoryOfExpenseName}</td><td>{$paymentMethodName}</td> <td>{$expense['date_of_expense']}</td> <td>{$expense['expense_comment']}</td>";
-								$counter++;
-							}
-							?>
-						</table>
+						<div id="detailedExpenseTable"></div>
 					</div>
 				</div>
 			</div>
