@@ -70,10 +70,10 @@ if(isset($_POST['email'])){
 		
 	$answer=json_decode($check);
 	
-	if($answer->success==false){
+	/*if($answer->success==false){
 		$validationStatus=false;
 		$_SESSION['errorCaptcha']="Confirm that you are not a bot";
-	}
+	}*/
 	
 	if($validationStatus==false){
 		$_SESSION['usernameAttempt']=$username;

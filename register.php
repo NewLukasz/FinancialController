@@ -118,7 +118,7 @@
 						unset($_SESSION['errorTermsAndConditions']);
 					}
 				?>
-				
+				<!--
 				<div style="max-width:50%; margin:auto;" class="g-recaptcha" data-sitekey="6Lcis_oZAAAAACLypmyEUzGJOqq0u3AzA24k-BAt"></div>
 				<?php
 					if(isset($_SESSION['errorCaptcha']))
@@ -126,7 +126,7 @@
 						echo '<div class="errorNotyfication">'.$_SESSION['errorCaptcha'].'</div>';
 						unset($_SESSION['errorCaptcha']);
 					}
-				?>
+				?>-->
 			  <button type="submit" class="btn btn-primary btn-block mt-4 ">Register</button>
 			</form>
 		</main>
