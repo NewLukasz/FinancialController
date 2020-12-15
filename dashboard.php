@@ -24,7 +24,6 @@
 		<link rel="stylesheet" href="css/bootstrap.min.css">
 		<link rel="stylesheet" href="css/fontello.css" type="text/css">
 		<link rel="stylesheet" href="main.css">
-		<script src="skrypt.js"></script>
     
 	</head>
 
