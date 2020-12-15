@@ -80,7 +80,7 @@
 				  <div class="input-group-prepend">
 					<span class="input-group-text"><i class="icon-money"></i></span>
 				 </div>
-				 <input name="amount" type="text" class="form-control" placeholder="Amount" aria-label="Amount" <?php if(isset($_SESSION['amountSetInSession'])) echo 'value="'.$_SESSION['amountSetInSession'].'"';?>>
+				 <input autocomplete="off" name="amount" type="text" class="form-control" placeholder="Amount" aria-label="Amount" <?php if(isset($_SESSION['amountSetInSession'])) echo 'value="'.$_SESSION['amountSetInSession'].'"';?>>
 				</div>
 				<?php
 					if(isset($_SESSION['amountError'])){
@@ -142,7 +142,7 @@
 				  <div class="input-group-prepend">
 					<span class="input-group-text"><i class="icon-pencil"></i></span>
 				  </div>
-				  <input name="comment" type="text" class="form-control" placeholder="Comment (optional)" aria-label="Comment" <?php if(isset($_SESSION['commentOfIncomeInSession'])) echo 'value="'.$_SESSION['commentOfIncomeInSession'].'"';?>>
+				  <input autocomplete="off" name="comment" type="text" class="form-control" placeholder="Comment (optional)" aria-label="Comment" <?php if(isset($_SESSION['commentOfIncomeInSession'])) echo 'value="'.$_SESSION['commentOfIncomeInSession'].'"';?>>
 				</div>
 				<?php
 					if(isset($_SESSION['commentError'])){
