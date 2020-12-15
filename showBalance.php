@@ -12,6 +12,12 @@
 	$d= new DateTime($firstLimitDate);
 	$secondLimitDate=$d->format('Y-m-t');
 	//echo $secondLimitDate;
+	if(isset($_POST['fisrtLimitDate'])){
+		echo $_POST['fisrtLimitDate']."<br/>";
+	}
+	if(isset($_POST['secondLimitDate'])){
+			echo $_POST['secondLimitDate'];
+	}
 ?>
 
 <!DOCTYPE html>
@@ -222,34 +228,26 @@
 			
 			  
 			<div class="modal-body">
-			<div class="form-group">
-				<label>Type date:</label>
-				<div class="input-group mb-2">
-				  <div class="input-group-prepend">
-					<span class="input-group-text"><i class="icon-calendar"></i></span>
-				  </div>
-				  <input  name="fisrtLimitDate" id="datePickerFirstLimit" type="text" class="form-control" aria-label="Date">
-				  
+				<div class="form-group">
+					<label>Type first limit date:</label>
+					<div class="input-group mb-2">
+					  <div class="input-group-prepend">
+							<span class="input-group-text"><i class="icon-calendar"></i></span>
+					  </div>
+					  <input  name="fisrtLimitDate" id="datePickerFirstLimit" type="text" class="form-control" aria-label="Date">
+					</div>
+					<label>Type second limit date:</label>
+					<div class="input-group mb-3">
+					  <div class="input-group-prepend">
+						<span class="input-group-text"><i class="icon-calendar"></i></span>
+					  </div>
+					  <input  name="secondLimitDate" id="datePickerSecondLimit" type="text" class="form-control" aria-label="Date">
+					</div>
+					<div class="input-group mb-2">
+							 <button type="submit" class="btn btn-primary btn-block mt-2">Save changes</button>
+					</div>
 				</div>
-				
-				<label>Type date:</label>
-				<div class="input-group mb-2">
-				  <div class="input-group-prepend">
-					<span class="input-group-text"><i class="icon-calendar"></i></span>
-				  </div>
-				  <input  name="secondLimitDate" id="datePickerSecondLimit" type="text" class="form-control" aria-label="Date">
-				  
-				</div>
-				
 			</div>
-			
-		
-	  
-			  </div>
-			  <div class="modal-footer">
-				<button type="button" class="btn btn-primary " data-dismiss="modal">Save changes</button>
-				<button type="submit" class="btn btn-secondary" data-dismiss="modal">Close</button>
-			  </div>
 	  </form>
     </div>
   </div>
