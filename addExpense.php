@@ -30,7 +30,7 @@
 		<link rel="stylesheet" href="main.css">
 		<script src="jquery-3.5.1.min.js"></script>
 		<script src="jquery-ui.min.js"></script>
-		<script src="script/calendarForAddingFinancialMovements.js"></script>
+		<script src="script/calendar.js"></script>
     
 	</head>
 
@@ -80,7 +80,7 @@
 				  <div class="input-group-prepend">
 					<span class="input-group-text"><i class="icon-basket"></i></span>
 				 </div>
-				 <input name="cost" type="text" class="form-control" placeholder="Cost" aria-label="Cost"
+				 <input autocomplete="off" name="cost" type="text" class="form-control" placeholder="Cost" aria-label="Cost"
 				 <?php
 				 if(isset($_SESSION['costSetInSession'])) echo 'value="'.$_SESSION['costSetInSession'].'"';?> >
 				</div>
@@ -165,7 +165,7 @@
 				  <div class="input-group-prepend">
 					<span class="input-group-text"><i class="icon-pencil"></i></span>
 				  </div>
-				  <input name="comment" type="text" class="form-control" placeholder="Comment (optional)" aria-label="Comment"<?php if(isset($_SESSION['commentOfExpenseInSession'])) echo 'value="'.$_SESSION['commentOfExpenseInSession'].'"';?>>
+				  <input autocomplete="off" name="comment" type="text" class="form-control" placeholder="Comment (optional)" aria-label="Comment"<?php if(isset($_SESSION['commentOfExpenseInSession'])) echo 'value="'.$_SESSION['commentOfExpenseInSession'].'"';?>>
 				</div>
 				<?php
 					if(isset($_SESSION['commentError'])){
