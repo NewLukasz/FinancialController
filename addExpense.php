@@ -30,7 +30,7 @@
 		<link rel="stylesheet" href="main.css">
 		<script src="jquery-3.5.1.min.js"></script>
 		<script src="jquery-ui.min.js"></script>
-		<script src="script/calendarForAddingFinancialMovements.js"></script>
+		<script src="script/calendar.js"></script>
     
 	</head>
 
