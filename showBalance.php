@@ -8,15 +8,15 @@
 	require_once "database.php";
 	
 	$firstLimitDate=date("Y-m-1");
-	//echo $firstLimitDate;
 	$d= new DateTime($firstLimitDate);
 	$secondLimitDate=$d->format('Y-m-t');
-	//echo $secondLimitDate;
 	if(isset($_POST['fisrtLimitDate'])){
 		echo $_POST['fisrtLimitDate']."<br/>";
+		$fisrtLimitDate=$_POST['fisrtLimitDate'];
 	}
 	if(isset($_POST['secondLimitDate'])){
-			echo $_POST['secondLimitDate'];
+		echo $_POST['secondLimitDate'];
+		$secondLimitDate=$_POST['secondLimitDate'];
 	}
 ?>
 
@@ -203,61 +203,61 @@
 		</header>
 	
 		<main>
-			<div class="container">
-			
-			
-		<div class="d-flex justify-content-end">
-			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal">
-			  Change period of time
-			</button>
-
-<!-- Modal -->
-<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="change period of time" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Choose period of time</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      
-	  
-	  
-		<form action="showBalance.php" method="post">
-			
-			  
-			<div class="modal-body">
-				<div class="form-group">
-					<label>Type first limit date:</label>
-					<div class="input-group mb-2">
-					  <div class="input-group-prepend">
-							<span class="input-group-text"><i class="icon-calendar"></i></span>
-					  </div>
-					  <input  name="fisrtLimitDate" id="datePickerFirstLimit" type="text" class="form-control" aria-label="Date">
+			<div class="container mt-2 ">
+				<div class="row p-2">
+					<div class="col-lg-4">
+						<button type="button" class="btn btn-primary">
+						  Current month balance
+						</button>
 					</div>
-					<label>Type second limit date:</label>
-					<div class="input-group mb-3">
-					  <div class="input-group-prepend">
-						<span class="input-group-text"><i class="icon-calendar"></i></span>
-					  </div>
-					  <input  name="secondLimitDate" id="datePickerSecondLimit" type="text" class="form-control" aria-label="Date">
+					<div class="col-lg-4 d-flex justify-content-center">
+						<button type="button" class="btn btn-primary ">
+						  Previous month balance
+						</button>
 					</div>
-					<div class="input-group mb-2">
-							 <button type="submit" class="btn btn-primary btn-block mt-2">Save changes</button>
+					<div class="col-lg-4  d-flex justify-content-end">
+						<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal">
+						  Balance from custom period of time
+						</button>
+						<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="change period of time" aria-hidden="true">
+						  <div class="modal-dialog" role="document">
+							<div class="modal-content">
+							  <div class="modal-header">
+								<h5 class="modal-title" id="modalLabel">Custom period of time</h5>
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								  <span aria-hidden="true">&times;</span>
+								</button>
+							  </div>
+								<form action="showBalance.php" method="post">
+									<div class="modal-body">
+										<div class="form-group">
+											<label>Type first limit date:</label>
+											<div class="input-group mb-2">
+											  <div class="input-group-prepend">
+													<span class="input-group-text"><i class="icon-calendar"></i></span>
+											  </div>
+											  <input  name="fisrtLimitDate" id="datePickerFirstLimit" type="text" class="form-control" aria-label="Date">
+											</div>
+											<label>Type second limit date:</label>
+											<div class="input-group mb-3">
+											  <div class="input-group-prepend">
+												<span class="input-group-text"><i class="icon-calendar"></i></span>
+											  </div>
+											  <input  name="secondLimitDate" id="datePickerSecondLimit" type="text" class="form-control" aria-label="Date">
+											</div>
+											<div class="input-group mb-2">
+													 <button type="submit" class="btn btn-primary btn-block mt-2">Save changes</button>
+											</div>
+										</div>
+									</div>
+							  </form>
+							</div>
+						  </div>
+						</div>
 					</div>
 				</div>
 			</div>
-	  </form>
-    </div>
-  </div>
-</div>
-			</div>
-			
-			
-			
-			
-			
+			<div class="container">
 				<div class="row p-4">
 					<div class="col-lg-12">
 						
