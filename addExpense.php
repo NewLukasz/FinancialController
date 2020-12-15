@@ -119,7 +119,6 @@
 			</div>
 			<label>Choose payment method: </label>
 			<select class="form-control mb-2" name="paymentMethod">
-				<option></option>
 				<?php 
 				foreach($_SESSION['paymentMethods']as $method){
 					if(isset($_SESSION['paymentMethodInSession'])){
@@ -142,7 +141,6 @@
 			</div>
 			<label>Choose category: </label>
 			<select class="form-control mb-2" name="expenseCategory">
-				<option></option>
 				<?php 
 				foreach($_SESSION['categoriesOfExpense']as $category){
 					if(isset($_SESSION['expenseCategoryInSession'])){

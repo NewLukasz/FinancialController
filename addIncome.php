@@ -118,7 +118,6 @@
 			</div>
 			<label>Choose source of income: </label>
 			<select class="form-control mb-2" name="sourceOfIncome">
-				<option></option>
 				<?php 
 				foreach($_SESSION['sourcesOfIncome']as $source){
 					if(isset($_SESSION['sourceOfIncomeInSession'])){

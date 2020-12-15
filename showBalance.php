@@ -8,10 +8,10 @@
 	require_once "database.php";
 	
 	$firstLimitDate=date("Y-m-1");
-	echo $firstLimitDate;
+	//echo $firstLimitDate;
 	$d= new DateTime($firstLimitDate);
 	$secondLimitDate=$d->format('Y-m-t');
-	echo $secondLimitDate;
+	//echo $secondLimitDate;
 ?>
 
 <!DOCTYPE html>
@@ -64,7 +64,6 @@
 			]);
 			var table = new google.visualization.Table(document.getElementById('incomesCategoryTable'));
 			table.draw(data, {showRowNumber: true, width: '350px'});
-			
 		  }
 		  
 		  
