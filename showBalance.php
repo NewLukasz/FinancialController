@@ -37,7 +37,7 @@
 		
 		<script src="jquery-3.5.1.min.js"></script>
 		<script src="jquery-ui.min.js"></script>
-		<script src="script/calendarForAddingFinancialMovements.js"></script>
+		<script src="script/calendar.js"></script>
 		<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 		
 		<script type="text/javascript">
@@ -59,7 +59,6 @@
 					echo "['$source',$currectAmount],";
 				}
 			}
-			
 			?>
 			]);
 			var table = new google.visualization.Table(document.getElementById('incomesCategoryTable'));
@@ -109,7 +108,6 @@
 					echo "['$source',$currectAmount],";
 				}
 			}
-			
 			?>
         ]);
 
@@ -230,7 +228,16 @@
 				  <div class="input-group-prepend">
 					<span class="input-group-text"><i class="icon-calendar"></i></span>
 				  </div>
-				  <input  name="fisrtLimitDate" id="datePicker" type="text" class="form-control" aria-label="Date">
+				  <input  name="fisrtLimitDate" id="datePickerFirstLimit" type="text" class="form-control" aria-label="Date">
+				  
+				</div>
+				
+				<label>Type date:</label>
+				<div class="input-group mb-2">
+				  <div class="input-group-prepend">
+					<span class="input-group-text"><i class="icon-calendar"></i></span>
+				  </div>
+				  <input  name="secondLimitDate" id="datePickerSecondLimit" type="text" class="form-control" aria-label="Date">
 				  
 				</div>
 				
