@@ -20,13 +20,15 @@
 	}
 	
 	if(isset($_POST['currentMonthBalance'])){
-		//echo "SWITCHED ON CURENT BALANCE<br/>";
-		//echo $_POST['currentMonthBalance'];
+		$firstLimitDate=date("Y-m-1");
+		$d= new DateTime($firstLimitDate);
+		$secondLimitDate=$d->format('Y-m-t');
 	}
 	
 	if(isset($_POST['previousMonthBalance'])){
-		//echo "SWITCHED ON PREVIOUS BALANCE<br/>";
-		//echo $_POST['previousMonthBalance'];
+		$firstLimitDate= date("Y-m-1",strtotime("-1 month"));
+		$d=new DateTime($firstLimitDate);
+		$secondLimitDate=$d->format('Y-m-t');
 	}
 ?>
 
