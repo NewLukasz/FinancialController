@@ -31,7 +31,7 @@
 		require_once "functions.php";
 		if(checkIsAValidDate($_POST['fisrtLimitDate'])){
 			$fisrtLimitDate=$_POST['fisrtLimitDate'];
-			$rangeOfBalance=$firstLimitDate." to ". $secondLimitDate;
+			
 		}else{
 			header("Location: showBalanceWrongCustomBalancesDatas.php");
 		}
@@ -40,13 +40,10 @@
 	if(isset($_POST['secondLimitDate'])){
 		if(checkIsAValidDate($_POST['secondLimitDate'])){
 			$secondLimitDate=$_POST['secondLimitDate'];
+			$rangeOfBalance=$firstLimitDate." to ". $secondLimitDate;
 		}else{
 			header("Location: showBalanceWrongCustomBalancesDatas.php");
 		}
-	}
-	
-	if($firstLimitDate>$secondLimitDate){
-		header("Location: showBalanceWrongCustomBalancesDatas.php");
 	}
 ?>
 
