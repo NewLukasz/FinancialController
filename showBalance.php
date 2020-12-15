@@ -79,7 +79,6 @@
 		<script type="text/javascript">
 		  google.charts.load('current', {'packages':['table']});
 		  google.charts.setOnLoadCallback(drawIncomeCategoryTable);
-
 		  function drawIncomeCategoryTable() {
 			var data = new google.visualization.DataTable();
 			data.addColumn('string', 'Category');
@@ -103,9 +102,9 @@
 		  
 		  
 		  
+		  
 		  google.charts.load('current', {'packages':['table']});
 		  google.charts.setOnLoadCallback(drawExpenseCategoryTable);
-
 		  function drawExpenseCategoryTable() {
 			var data = new google.visualization.DataTable();
 			data.addColumn('string', 'Category');
@@ -129,9 +128,7 @@
 		  
 		google.charts.load('current', {'packages':['corechart']});
 		google.charts.setOnLoadCallback(drawIncomeCategoryChart);
-		
 		function drawIncomeCategoryChart() {
-
         var data = google.visualization.arrayToDataTable([
           ['Category', 'Income'],
 		  <?php
@@ -146,16 +143,12 @@
 			}
 			?>
         ]);
-
         var options = {
           title: 'My incomes'
         };
-
         var chart = new google.visualization.PieChart(document.getElementById('IncomesPiechart'));
-
         chart.draw(data, options);
 		}
-		
 		
 		
 		google.charts.load('current', {'packages':['corechart']});
@@ -176,7 +169,6 @@
 			}
 			?>
         ]);
-
         var options = {
           title: 'My expenses'
         };
@@ -186,9 +178,6 @@
         chart.draw(data, options);
 		}
 		
-		
-		
-		  
 		</script>
 		
     
